@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Creative Designer portfolio — I craft digital experiences that inspire and convert. UI/UX, Brand Identity, Web & Digital Design." />
+  <title>Creative Designer — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav__left">
+      <div class="nav__badge">
+        <span class="nav__badge-dot"></span>
+        Available for freelance projects
+      </div>
+    </div>
+    
+    <div class="nav__center">
+    </div>
+
+    <div class="nav__right">
+      <div class="nav__links">
+        <a href="#about" class="nav__link">About</a>
+        <a href="#projects" class="nav__link">Work</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </div>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+        <!-- Sun icon -->
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <!-- Moon icon -->
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-menu__link">About</a>
+    <a href="#projects" class="mobile-menu__link">Work</a>
+    <a href="#contact" class="mobile-menu__link">Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero__content">
+      <div class="hero__headline">
+        <h1 class="hero__title">
+          <span class="hero__title-line reveal-text">SUBHAN</span>
+          <span class="hero__title-script reveal-text">Kalgond</span>
+        </h1>
+        <p class="hero__tagline reveal-fade">I craft digital experiences<br />that inspire and convert.</p>
+        <a href="#projects" class="hero__cta reveal-fade">
+          View My Work
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="hero__photo-wrapper reveal-fade">
+        <img src="photo.jpg" alt="Subhan Kalgond — Creative Designer" class="hero__photo" />
+      </div>
+
+      <div class="hero__roles reveal-fade">
+        <span class="hero__role">Data Scientist</span>
+        <span class="hero__role">Software Developer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TABS: ABOUT / EXPERIENCE / TOOLKIT
+  ═══════════════════════════════════════ -->
+  <section class="tabs-section" id="about">
+    <div class="container">
+
+      <!-- Tab Bar -->
+      <div class="tabs-bar">
+        <button class="tabs-bar__btn tabs-bar__btn--active" data-tab="about">// About</button>
+        <button class="tabs-bar__btn" data-tab="experience">// Experience</button>
+        <button class="tabs-bar__btn" data-tab="toolkit">// Toolkit</button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="tabs-panels">
+
+        <!-- ABOUT Panel -->
+        <div class="tab-panel tab-panel--active" id="panel-about">
+          <div class="tab-panel__inner">
+            <h2 class="tab-panel__heading">Hello everyone!</h2>
+            <div class="tab-panel__body">
+              <p>I am a 2nd year <strong>Data Science</strong> student at <strong>Anjuman Institute of Technology and Management</strong> with a strong interest in technology, programming, and data-driven problem solving.</p>
+              <p>Currently, I am continuously improving my skills by learning new concepts, practicing coding, and working on technical problem-solving.</p>
+              <p>I am excited to connect with students, developers, and professionals to learn, grow, and explore opportunities in the field of <strong>Data Science</strong> and <strong>Software Development</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIENCE Panel -->
+        <div class="tab-panel" id="panel-experience">
+          <div class="tab-panel__inner">
+            <h2 class="tab-panel__heading">My Journey</h2>
+            <div class="tab-panel__timeline">
+
+              <div class="tl-item">
+                <div class="tl-item__dot"></div>
+                <div class="tl-item__content">
+                  <span class="tl-item__period">Feb 2025 – Apr 2026</span>
+                  <h4 class="tl-item__role">Machine Learning Intern (Internship)</h4>
+                  <p class="tl-item__place">My Job Grow</p>
+                  <p class="tl-item__desc">Participated in comprehensive training on company processes, tools and methodologies ◆ Applied knowledge practically through on-job training ◆ Developed skills in machine learning algorithms and data analysis ◆ Contributed to the growth of the company.</p>
+                </div>
+              </div>
+
+              <div class="tl-item">
+                <div class="tl-item__dot"></div>
+                <div class="tl-item__content">
+                  <span class="tl-item__period">2024 – Present</span>
+                  <h4 class="tl-item__role">Data Science Student</h4>
+                  <p class="tl-item__place">Anjuman Institute of Technology and Management</p>
+                  <p class="tl-item__desc">Pursuing B.Tech in Data Science. Building projects in machine learning, data analysis, and software development.</p>
+                </div>
+              </div>
+
+              <div class="tl-item">
+                <div class="tl-item__dot"></div>
+                <div class="tl-item__content">
+                  <span class="tl-item__period">2023 – 2024</span>
+                  <h4 class="tl-item__role">Self-Learning &amp; Practice</h4>
+                  <p class="tl-item__place">Online Platforms</p>
+                  <p class="tl-item__desc">Completed courses in Python, Java, and SQL. Built mini-projects and solved coding challenges on competitive platforms.</p>
+                </div>
+              </div>
+
+              <div class="tl-item">
+                <div class="tl-item__dot"></div>
+                <div class="tl-item__content">
+                  <span class="tl-item__period">2022 – 2023</span>
+                  <h4 class="tl-item__role">Higher Secondary Education</h4>
+                  <p class="tl-item__place">Science Stream</p>
+                  <p class="tl-item__desc">Developed foundational interest in programming and logical thinking.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- TOOLKIT Panel -->
+        <div class="tab-panel" id="panel-toolkit">
+          <div class="tab-panel__inner">
+            <h2 class="tab-panel__heading">My Toolkit</h2>
+            <div class="toolkit-grid">
+
+              <div class="toolkit-category">
+                <h4 class="toolkit-category__title">Languages</h4>
+                <div class="toolkit-chips">
+                  <span class="toolkit-chip">Python</span>
+                  <span class="toolkit-chip">Java</span>
+                  <span class="toolkit-chip">SQL</span>
+                  <span class="toolkit-chip">C</span>
+                  <span class="toolkit-chip">JavaScript</span>
+                </div>
+              </div>
+
+              <div class="toolkit-category">
+                <h4 class="toolkit-category__title">Web Technologies</h4>
+                <div class="toolkit-chips">
+                  <span class="toolkit-chip">HTML</span>
+                  <span class="toolkit-chip">CSS</span>
+                  <span class="toolkit-chip toolkit-chip--outline">MongoDB</span>
+                  <span class="toolkit-chip toolkit-chip--outline">React</span>
+                  <span class="toolkit-chip toolkit-chip--outline">Node.js</span>
+                </div>
+              </div>
+
+              <div class="toolkit-category">
+                <h4 class="toolkit-category__title">Domains</h4>
+                <div class="toolkit-chips">
+                  <span class="toolkit-chip toolkit-chip--outline">Data Science</span>
+                  <span class="toolkit-chip toolkit-chip--outline">Machine Learning</span>
+                  <span class="toolkit-chip toolkit-chip--outline">Software Development</span>
+                  <span class="toolkit-chip toolkit-chip--outline">Web Development</span>
+                </div>
+              </div>
+
+              <div class="toolkit-category">
+                <h4 class="toolkit-category__title">Tools &amp; Platforms</h4>
+                <div class="toolkit-chips">
+                  <span class="toolkit-chip toolkit-chip--outline">VS Code</span>
+                  <span class="toolkit-chip toolkit-chip--outline">Git &amp; GitHub</span>
+                  <span class="toolkit-chip toolkit-chip--outline">Jupyter Notebook</span>
+                  <span class="toolkit-chip toolkit-chip--outline">MySQL Workbench</span>
+                  <span class="toolkit-chip toolkit-chip--outline">Postman</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SELECTED PROJECTS
+  ═══════════════════════════════════════ -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-header__left">
+          <span class="section-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Selected Projects
+          </span>
+        </div>
+        <a href="#" class="section-link">Explore All Works →</a>
+      </div>
+
+      <div class="projects__grid">
+        <!-- Project 1 -->
+        <a href="https://nagarvaani-voice-of-city.vercel.app/" target="_blank" class="project-card" tabindex="0">
+          <div class="project-card__img-wrap">
+            <div class="project-card__img project-card__img--1" style="background-image: url('nagarvaani.png'); background-position: top center;">
+              <div class="project-card__overlay">
+                <span class="project-card__view">View Project →</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card__meta">
+            <span class="project-card__num">01</span>
+            <div>
+              <h3 class="project-card__title">NagarVaani - Voice of City</h3>
+              <p class="project-card__type">Web App • Issue Tracking • Smart City Platform</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="https://subhankalgond.github.io/grocerymenu/" target="_blank" class="project-card project-card--tall" tabindex="0">
+          <div class="project-card__img-wrap">
+            <div class="project-card__img project-card__img--2" style="background-image: url('freshcart.png'); background-position: top center;">
+              <div class="project-card__overlay">
+                <span class="project-card__view">View Project →</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card__meta">
+            <span class="project-card__num">02</span>
+            <div>
+              <h3 class="project-card__title">FreshCart</h3>
+              <p class="project-card__type">E-Commerce • Grocery App • Frontend Design</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <!-- ═══════════════════════════════════════
+       CONTACT / FOOTER
+  ═══════════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact__layout">
+
+        <!-- Left: CTA Headline -->
+        <div class="contact__headline">
+          <h2 class="contact__title">Let's<br/>Create<br/>Together</h2>
+        </div>
+
+        <!-- Middle: Details -->
+        <div class="contact__details">
+          <p class="contact__available">I'm currently available<br/>for freelance projects</p>
+          <ul class="contact__list">
+            <li class="contact__item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:subhankalgond1@gmail.com">subhankalgond1@gmail.com</a>
+            </li>
+            <li class="contact__item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.65 5c-.09-1.08.6-2.1 1.65-2.18l3-.18a2 2 0 0 1 2 1.72c.13 1 .36 1.98.7 2.93a2 2 0 0 1-.45 2.11L7.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.95.34 1.93.57 2.93.7a2 2 0 0 1 1.72 2.03z"/></svg>
+              <a href="tel:+919008600215">+91 9008600215</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-bar">
+      <span>© 2025 Subhan Kalgond. All rights reserved.</span>
+      <div class="contact__socials">
+        <a href="https://www.linkedin.com/in/abdul-subhan-713a3b33b" target="_blank" class="contact__social-btn" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/subhankalgond" target="_blank" class="contact__social-btn" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </a>
+        <a href="https://x.com/AbdulSubha115" target="_blank" class="contact__social-btn" aria-label="X (Twitter)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+        </a>
+        <a href="https://www.instagram.com/abdulsubhan03?igsi=aXg1eGMwa2ExZm1x" target="_blank" class="contact__social-btn" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
