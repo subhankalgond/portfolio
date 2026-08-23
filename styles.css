@@ -397,7 +397,7 @@ ul { list-style: none; }
 }
 .hero__title-line {
   font-family: var(--ff-head);
-  font-size: clamp(4rem, 10vw, 9rem);
+  font-size: clamp(2.5rem, 8vw, 9rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--clr-text);
@@ -406,7 +406,7 @@ ul { list-style: none; }
 .hero__title-script {
   font-family: var(--ff-script);
   font-style: italic;
-  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-size: clamp(2rem, 6vw, 6.5rem);
   font-weight: 400;
   color: var(--clr-accent);
   display: block;
@@ -650,9 +650,29 @@ ul { list-style: none; }
   background: rgba(200,241,53,0.05);
 }
 @media (max-width: 640px) {
-  .tabs-bar { flex-direction: column; }
-  .tabs-bar__btn { text-align: center; padding: 14px 20px; border-bottom: none; border-left: 2px solid transparent; }
-  .tabs-bar__btn--active { border-left-color: var(--clr-accent); border-bottom-color: transparent; }
+  .tabs-bar {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .tabs-bar__btn {
+    flex: 1;
+    text-align: center;
+    padding: 14px 10px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    border-left: none;
+  }
+  .tabs-bar__btn--active {
+    border-bottom-color: var(--clr-accent);
+    border-left-color: transparent;
+  }
   .tab-panel__inner { padding: 32px 24px; }
 }
 .stats__grid {
@@ -1176,7 +1196,9 @@ ul { list-style: none; }
   .service-card:first-child { border-radius: var(--radius) var(--radius) 0 0 !important; }
   .service-card:last-child  { border-radius: 0 0 var(--radius) var(--radius) !important; }
   .stats__grid { grid-template-columns: 1fr 1fr; }
+  .hero__photo { width: 210px; height: 320px; }
   .hero__photo-placeholder { width: 200px; height: 320px; }
+  .section-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 32px; }
   .trusted__logos { gap: 24px; }
   .trusted .container { gap: 24px; }
 }

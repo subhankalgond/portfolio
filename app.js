@@ -190,32 +190,7 @@ if (hero) {
   }, { passive: true });
 }
 
-// ─── THEME TOGGLE ─────────────────────────────────
-const themeToggle = document.getElementById('themeToggle');
-const sunIcon = themeToggle.querySelector('.sun-icon');
-const moonIcon = themeToggle.querySelector('.moon-icon');
-
-// Check for saved theme preference or use system preference (default dark)
-const savedTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', savedTheme);
-updateThemeIcons(savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcons(newTheme);
-});
-
-function updateThemeIcons(theme) {
-  if (theme === 'light') {
-    sunIcon.style.display = 'none';
-    moonIcon.style.display = 'block';
-  } else {
-    sunIcon.style.display = 'block';
-    moonIcon.style.display = 'none';
-  }
-}
+// Force dark theme as default
+document.documentElement.setAttribute('data-theme', 'dark');
 
 console.log('%c✦ Portfolio loaded successfully', 'color: #c8f135; font-size: 14px; font-weight: bold;');
