@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-app",
+  "version": "1.0.0",
+  "description": "Subhan Kalgond Portfolio",
+  "scripts": {
+    "dev": "npx -y serve .",
+    "start": "npx -y serve ."
+  },
+  "keywords": [],
+  "author": "Subhan Kalgond",
+  "license": "ISC"
+}
