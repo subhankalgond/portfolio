@@ -18,9 +18,10 @@
   --clr-nav-bg:    rgba(10,10,10,0.85);
   --clr-mobile-bg: rgba(10,10,10,0.97);
 
-  --ff-head:       'Space Grotesk', sans-serif;
-  --ff-script:     'Playfair Display', serif;
-  --ff-body:       'Inter', sans-serif;
+  --ff-head:       'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ff-script:     'Space Grotesk', sans-serif;
+  --ff-mono:       'Space Mono', 'SFMono-Regular', Consolas, monospace;
+  --ff-body:       'Space Grotesk', 'Inter', -apple-system, sans-serif;
   --radius:        12px;
   --radius-lg:     20px;
   --transition:    0.35s cubic-bezier(0.4,0,0.2,1);
@@ -398,18 +399,21 @@ ul { list-style: none; }
 .hero__title-line {
   font-family: var(--ff-head);
   font-size: clamp(2.5rem, 8vw, 9rem);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--clr-text);
   display: block;
+  text-transform: uppercase;
 }
 .hero__title-script {
-  font-family: var(--ff-script);
-  font-style: italic;
-  font-size: clamp(2rem, 6vw, 6.5rem);
-  font-weight: 400;
+  font-family: var(--ff-head);
+  font-style: normal;
+  font-size: clamp(2.5rem, 8vw, 9rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--clr-accent);
   display: block;
+  text-transform: uppercase;
   margin-top: -8px;
 }
 .hero__tagline {
@@ -482,10 +486,10 @@ ul { list-style: none; }
   background: none;
   border: none;
   padding: 20px 24px;
-  font-family: var(--ff-head);
-  font-size: 0.88rem;
+  font-family: var(--ff-mono);
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--clr-muted);
   cursor: pointer;
@@ -523,7 +527,9 @@ ul { list-style: none; }
 .tab-panel__heading {
   font-family: var(--ff-head);
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
   margin-bottom: 28px;
   background: linear-gradient(135deg, var(--clr-text) 60%, var(--clr-accent));
   -webkit-background-clip: text;
