@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
     --bg-color: #f4f4f0;
@@ -9,9 +9,9 @@
     --bento-bg: rgba(0, 0, 0, 0.03);
     
     --font-heading: 'Bebas Neue', sans-serif;
-    --font-sans: 'JetBrains Mono', monospace;
+    --font-sans: 'Space Mono', monospace;
     --font-serif: 'Bebas Neue', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-mono: 'Space Mono', monospace;
 
     /* Aliases for compatibility */
     --text-color: var(--text-primary);
