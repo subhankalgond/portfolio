@@ -303,7 +303,7 @@ section {
 }
 
 .identity-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 700;
     text-transform: uppercase;
@@ -372,7 +372,7 @@ section {
 }
 
 .about-statement {
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 600;
     line-height: 1.1;
