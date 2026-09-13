@@ -262,6 +262,7 @@ section {
     color: var(--text-muted);
     font-size: 1rem;
     margin-bottom: 24px;
+    font-family: var(--font-mono);
 }
 
 .tech-stack {
@@ -274,6 +275,7 @@ section {
     padding: 4px 12px;
     border: 1px solid var(--border-color);
     border-radius: 20px;
+    font-family: var(--font-mono);
 }
 
 /* About Section (Dark Theme) */
