@@ -88,7 +88,7 @@ body {
 }
 
 .brand {
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: normal;
 }
@@ -204,10 +204,9 @@ section {
 }
 
 .section-header h2 {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: 3rem;
     font-weight: normal;
-    font-style: italic;
 }
 
 /* Bento Grid */
@@ -253,7 +252,7 @@ section {
 }
 
 .project-info h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: normal;
     margin-bottom: 8px;
@@ -302,7 +301,7 @@ section {
 }
 
 .identity-title {
-    font-family: var(--font-sans);
+    font-family: var(--font-heading);
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 700;
     text-transform: uppercase;
@@ -371,7 +370,7 @@ section {
 }
 
 .about-statement {
-    font-family: var(--font-sans);
+    font-family: var(--font-heading);
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 600;
     line-height: 1.1;
@@ -482,7 +481,7 @@ section {
 }
 
 .giant-contact {
-    font-family: var(--font-serif);
+    font-family: var(--font-heading);
     font-size: clamp(4rem, 10vw, 10rem);
     font-weight: normal;
     letter-spacing: -0.02em;
