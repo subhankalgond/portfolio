@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Software Engineer</title>
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Editorial Font Stack -->
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles & Icons -->
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    
+    <div class="noise"></div>
+
+    <header class="header">
+        <div class="container header-inner">
+            <div class="brand">Subhan Kalgond.</div>
+            <nav class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#identity">Identity</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container reveal">
+            <div class="hero-content-wrapper">
+                <h1 class="hero-title">
+                    I think,<br>
+                    therefore<br>
+                    <span class="outline-text">I am.</span>
+                </h1>
+            </div>
+            
+            <div class="hero-image-wrapper">
+                <img src="profile.jpg" alt="Subhan Kalgond">
+            </div>
+        </section>
+
+        <section id="work" class="work-section container reveal">
+            <div class="section-header">
+                <h2>Selected Work</h2>
+                <div class="mono-text">01 / Projects</div>
+            </div>
+            
+            <div class="bento-grid">
+                <div class="bento-item project-with-image" onclick="window.open('https://nagarvaani-voice-of-city.vercel.app/', '_blank')">
+                    <img src="nagarvaani.png" alt="Nagarvaani Project Screenshot" class="project-screenshot">
+                    <div class="project-info">
+                        <div class="project-meta mono-text" style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.85rem; color: var(--text-secondary);">
+                            <span>[01]</span>
+                            <span style="display: flex; align-items: center; gap: 6px;">
+                                <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display: inline-block;"></span> Live
+                            </span>
+                        </div>
+                        <h3><a href="https://nagarvaani-voice-of-city.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Nagarvaani (Voice of City)</a></h3>
+                        <p>A digital platform empowering citizens to report, track, and resolve local civic issues seamlessly.</p>
+                        <div class="tech-stack mono-text">
+                            <span>Web App</span>
+                            <span>Community</span>
+                            <span>Civic Tech</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="identity" class="about-section dark-section reveal">
+            <div class="container">
+                <div class="identity-header">
+                    <h2 class="identity-title">IDENTITY</h2>
+                    <div class="identity-divider"></div>
+                    <span class="mono-text identity-profile">Profile</span>
+                </div>
+                
+                <div class="identity-tabs mono-text">
+                    <button class="tab-btn active" data-target="tab-about">// ABOUT</button>
+                    <button class="tab-btn" data-target="tab-experience">// EXPERIENCE</button>
+                    <button class="tab-btn" data-target="tab-toolkit">// TOOLKIT</button>
+                </div>
+                
+                <div id="tab-about" class="tab-content active">
+                    <div class="about-me-tag mono-text">// About Me</div>
+                    
+                    <div class="about-content">
+                        <h3 class="about-statement">
+                            HELLO <span class="highlight">EVERYONE!</span>
+                        </h3>
+                        
+                        <div class="about-text">
+                            <p>I am a 3rd year Data Science student at Anjuman Institute of Technology and Management with a strong interest in technology, programming, and data-driven problem solving.</p>
+                            <p>Currently, I am continuously improving my skills by learning new concepts, practicing coding, and working on technical problem-solving.</p>
+                            <p>I am excited to connect with students, developers, and professionals to learn, grow, and explore opportunities in the field of Data Science and Software Development.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-experience" class="tab-content" style="display: none;">
+                    <div class="about-me-tag mono-text">// My Journey</div>
+                    <div class="experience-list">
+                        <div class="exp-item">
+                            <div class="exp-date mono-text">Feb 2025 – Apr 2026</div>
+                            <div class="exp-details">
+                                <h3>Machine Learning Intern</h3>
+                                <div class="exp-company mono-text">My Job Grow</div>
+                                <p>Participated in comprehensive training on company processes, tools and methodologies ◆ Applied knowledge practically through on-job training ◆ Developed skills in machine learning algorithms and data analysis ◆ Contributed to the growth of the company.</p>
+                            </div>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-date mono-text">2024 – Present</div>
+                            <div class="exp-details">
+                                <h3>Data Science Student</h3>
+                                <div class="exp-company mono-text">Anjuman Institute of Technology and Management</div>
+                                <p>Pursuing B.Tech in Data Science. Building projects in machine learning, data analysis, and software development.</p>
+                            </div>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-date mono-text">2023 – 2024</div>
+                            <div class="exp-details">
+                                <h3>Self-Learning & Practice</h3>
+                                <div class="exp-company mono-text">Online Platforms</div>
+                                <p>Completed courses in Python, Java, and SQL. Built mini-projects and solved coding challenges on competitive platforms.</p>
+                            </div>
+                        </div>
+                        <div class="exp-item">
+                            <div class="exp-date mono-text">2022 – 2023</div>
+                            <div class="exp-details">
+                                <h3>Higher Secondary Education</h3>
+                                <div class="exp-company mono-text">Science Stream</div>
+                                <p>Developed foundational interest in programming and logical thinking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-toolkit" class="tab-content" style="display: none;">
+                    <div class="about-me-tag mono-text">// My Toolkit</div>
+                    <div class="toolkit-grid">
+                        <div class="toolkit-category">
+                            <h3>Languages</h3>
+                            <div class="tech-stack mono-text">
+                                <span>Python</span><span>Java</span><span>SQL</span><span>C</span><span>JavaScript</span>
+                            </div>
+                        </div>
+                        <div class="toolkit-category">
+                            <h3>Web Technologies</h3>
+                            <div class="tech-stack mono-text">
+                                <span>HTML</span><span>CSS</span><span>MongoDB</span><span>React</span><span>Node.js</span>
+                            </div>
+                        </div>
+                        <div class="toolkit-category">
+                            <h3>Domains</h3>
+                            <div class="tech-stack mono-text">
+                                <span>Data Science</span><span>Machine Learning</span><span>Software Development</span><span>Web Development</span>
+                            </div>
+                        </div>
+                        <div class="toolkit-category">
+                            <h3>Tools & Platforms</h3>
+                            <div class="tech-stack mono-text">
+                                <span>VS Code</span><span>Git & GitHub</span><span>Jupyter Notebook</span><span>MySQL Workbench</span><span>Postman</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-section container reveal">
+            <h2 class="giant-contact">LET'S TALK</h2>
+            
+            <div class="contact-links mono-text">
+                <a href="mailto:buildwithsubhankalgond@gmail.com" class="contact-pill">
+                    <i data-lucide="mail"></i> Email
+                </a>
+                <a href="https://github.com/subhankalgond" class="contact-pill" target="_blank" rel="noopener noreferrer">
+                    <i data-lucide="github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/abdul-subhan-713a3b33b" class="contact-pill" target="_blank" rel="noopener noreferrer">
+                    <i data-lucide="linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer container mono-text">
+        <div class="footer-left">© 2026 Subhan Kalgond.</div>
+        <div class="footer-right">ALL RIGHTS RESERVED.</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
