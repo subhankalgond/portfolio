@@ -393,6 +393,7 @@ section {
     font-size: 1.125rem;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 24px;
+    font-family: var(--font-mono);
 }
 
 .achievements {
@@ -433,7 +434,7 @@ section {
     color: rgba(255, 255, 255, 0.5);
 }
 .exp-details h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: normal;
     margin-bottom: 4px;
@@ -445,6 +446,7 @@ section {
 .exp-details p {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
+    font-family: var(--font-mono);
 }
 
 /* Toolkit */
@@ -459,7 +461,7 @@ section {
     }
 }
 .toolkit-category h3 {
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: normal;
     margin-bottom: 24px;
