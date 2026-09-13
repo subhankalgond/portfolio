@@ -545,6 +545,10 @@ section {
         align-items: center;
     }
     
+    .hero-title {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+    
     .hero-content-wrapper {
         margin-top: 0;
     }
