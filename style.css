@@ -181,12 +181,10 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: 80% center;
-    filter: grayscale(100%);
-    transition: filter 0.5s ease, transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
 .hero-image-wrapper:hover img {
-    filter: grayscale(0%);
     transform: scale(1.05);
 }
 
@@ -212,25 +210,32 @@ section {
 /* Bento Grid */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
 .bento-item {
-    background-color: var(--bento-bg);
+    background-color: #ffffff;
     border: 1px solid var(--border-color);
-    padding: 32px;
+    border-radius: 12px;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
-.project-with-image {
-    padding: 0;
+.bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* Image wrapper with overlay badges */
+.project-image-wrapper {
+    position: relative;
     overflow: hidden;
-    justify-content: space-between;
 }
 
 .project-screenshot {
@@ -239,43 +244,104 @@ section {
     aspect-ratio: 16/9;
     object-fit: cover;
     object-position: top center;
-    border-bottom: 1px solid var(--border-color);
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.bento-item:hover .project-screenshot {
+    transform: scale(1.04);
+}
+
+.project-num {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(4px);
+}
+
+.project-live-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.75);
+    color: #22c55e;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.08em;
+    backdrop-filter: blur(4px);
+}
+
+/* Card info area */
+.project-with-image {
+    padding: 0;
 }
 
 .project-with-image .project-info {
-    padding: 32px;
+    padding: 18px 20px 20px;
+    border-top: 1px solid var(--border-color);
 }
 
-.bento-item:hover {
-    transform: translateY(-4px);
-    background-color: rgba(0, 0, 0, 0.05);
+/* Title + category on same line */
+.project-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .project-info h3 {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: normal;
-    margin-bottom: 8px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.project-info h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.project-category {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-align: right;
+    white-space: nowrap;
 }
 
 .project-info p {
     color: var(--text-muted);
-    font-size: 1rem;
-    margin-bottom: 24px;
+    font-size: 0.72rem;
+    margin-bottom: 14px;
     font-family: var(--font-mono);
+    line-height: 1.6;
 }
 
 .tech-stack {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .tech-stack span {
-    padding: 4px 12px;
+    padding: 3px 10px;
     border: 1px solid var(--border-color);
     border-radius: 20px;
     font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
 }
 
 /* About Section (Dark Theme) */
