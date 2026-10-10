@@ -1,3 +1,5 @@
+import './style.css';
+
 // Force scroll to top on page refresh
 if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
@@ -7,19 +9,17 @@ window.scrollTo(0, 0);
 // Initialize icons
 lucide.createIcons();
 
-// Scroll Reveal Animation
+// Scroll Reveal Animation with ultra-smooth early trigger
 const revealElements = document.querySelectorAll('.reveal');
 
 const revealOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
+    threshold: 0.02,
+    rootMargin: "0px 0px 150px 0px"
 };
 
 const revealOnScroll = new IntersectionObserver(function(entries, observer) {
     entries.forEach(entry => {
-        if (!entry.isIntersecting) {
-            return;
-        } else {
+        if (entry.isIntersecting) {
             entry.target.classList.add('active');
             observer.unobserve(entry.target);
         }
@@ -27,16 +27,21 @@ const revealOnScroll = new IntersectionObserver(function(entries, observer) {
 }, revealOptions);
 
 revealElements.forEach(el => {
-    revealOnScroll.observe(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 200) {
+        el.classList.add('active');
+    } else {
+        revealOnScroll.observe(el);
+    }
 });
 
-// Header border on scroll
+// Header scrolled class toggle
 const header = document.querySelector('.header');
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.style.borderColor = 'var(--border-color)';
+    if (window.scrollY > 30) {
+        header.classList.add('scrolled');
     } else {
-        header.style.borderColor = 'transparent';
+        header.classList.remove('scrolled');
     }
 });
 
