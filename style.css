@@ -836,72 +836,104 @@ section {
    ========================================== */
 @media (max-width: 900px) {
     .container {
-        padding: 0 20px;
+        padding: 0 18px;
     }
 
-    /* Header */
+    /* Compact 1-Row Mobile Header */
     .header {
-        padding: 14px 0;
+        padding: 12px 0;
     }
 
     .header-inner {
-        flex-direction: column;
-        gap: 12px;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
+        gap: 8px;
     }
 
     .brand {
-        font-size: 1.2rem;
-        padding: 5px 14px;
+        font-size: 1.05rem;
+        padding: 4px 10px;
+        letter-spacing: -0.02em;
     }
 
     .nav-links {
-        gap: 8px;
-        width: 100%;
-        justify-content: center;
+        gap: 6px;
+        width: auto;
     }
 
     .nav-links a {
-        padding: 6px 12px;
-        font-size: 0.75rem;
-        flex: 1 1 auto;
-        text-align: center;
+        padding: 5px 10px;
+        font-size: 0.72rem;
+        letter-spacing: 0.03em;
     }
 
-    /* Hero */
+    /* Mobile Hero Section */
     .hero {
         flex-direction: column;
         justify-content: flex-start;
         text-align: left;
-        padding-top: 140px;
-        padding-bottom: 50px;
-        gap: 36px;
+        padding-top: 110px;
+        padding-bottom: 40px;
+        gap: 28px;
         min-height: auto;
     }
 
     .hero-content-wrapper {
         align-items: flex-start;
         width: 100%;
+        gap: 16px;
     }
 
     .hero-title {
-        font-size: clamp(2.6rem, 11vw, 4.8rem);
+        font-size: clamp(2.3rem, 10vw, 4.2rem);
         line-height: 0.95;
+        letter-spacing: -0.02em;
         word-break: break-word;
+    }
+
+    .outline-text {
+        padding: 0 10px;
+        margin-top: 6px;
     }
 
     .hero-image-wrapper {
         width: 100%;
-        max-width: 320px;
+        max-width: 280px;
         margin: 0 auto;
-        box-shadow: var(--shadow-hard);
+        box-shadow: 6px 6px 0px var(--ink-black);
     }
 
-    /* Bento Grid */
+    /* Section Headers & Bento Grid */
+    section {
+        padding: 64px 0;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 32px;
+        padding-bottom: 14px;
+    }
+
+    .section-header h2 {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+    }
+
     .bento-grid,
     .toolkit-grid {
         grid-template-columns: 1fr;
         gap: 24px;
+    }
+
+    .project-with-image .project-info {
+        padding: 18px;
+        gap: 10px;
+    }
+
+    .project-info h3 {
+        font-size: 1.55rem;
     }
 
     .project-title-row {
@@ -914,21 +946,22 @@ section {
         align-self: flex-start;
     }
 
-    /* Identity Section */
+    /* Dark Identity Section */
     .dark-section {
-        padding-top: 70px;
-        padding-bottom: 70px;
-        margin-top: 70px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        margin-top: 60px;
     }
 
     .identity-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
+        margin-bottom: 32px;
     }
 
     .identity-title {
-        font-size: clamp(2.6rem, 10vw, 4.5rem);
+        font-size: clamp(2.2rem, 9vw, 4.2rem);
     }
 
     .identity-divider {
@@ -936,47 +969,74 @@ section {
         height: 2px;
     }
 
+    .identity-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        width: 100%;
+        margin-bottom: 36px;
+        padding-bottom: 14px;
+    }
+
+    .identity-tabs button {
+        padding: 10px 4px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-align: center;
+        width: 100%;
+        white-space: nowrap;
+        box-shadow: 2px 2px 0px rgba(243, 240, 232, 0.2);
+    }
+
+    .about-statement {
+        font-size: clamp(1.6rem, 6.5vw, 2.8rem);
+    }
+
     .exp-item {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
         padding: 20px;
+        box-shadow: 4px 4px 0px rgba(243, 240, 232, 0.15);
     }
 
     .exp-date {
         border-right: none;
         border-bottom: 2px solid var(--dark-border);
         padding-right: 0;
-        padding-bottom: 8px;
+        padding-bottom: 6px;
         display: inline-block;
         width: fit-content;
     }
 
-    .identity-tabs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        width: 100%;
+    .exp-details h3 {
+        font-size: 1.4rem;
     }
 
-    .identity-tabs button {
-        padding: 10px 4px;
-        font-size: 0.72rem;
-        text-align: center;
-        width: 100%;
-        box-shadow: 2px 2px 0px rgba(243, 240, 232, 0.2);
+    .toolkit-category {
+        padding: 20px;
     }
 
-    /* Contact & Footer */
+    .toolkit-category h3 {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+    }
+
+    /* Contact Section & Footer */
+    .contact-section {
+        padding-top: 70px;
+        padding-bottom: 90px;
+    }
+
     .giant-contact {
-        font-size: clamp(2.8rem, 12vw, 5.5rem);
-        margin-bottom: 36px;
+        font-size: clamp(2.5rem, 11vw, 5rem);
+        margin-bottom: 32px;
     }
 
     .contact-links {
         flex-direction: column;
         align-items: stretch;
         width: 100%;
-        max-width: 320px;
+        max-width: 290px;
         margin: 0 auto;
         gap: 12px;
     }
@@ -998,11 +1058,17 @@ section {
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 16px;
+        padding: 0 14px;
     }
 
     .brand {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
+        padding: 3px 8px;
+    }
+
+    .nav-links a {
+        padding: 4px 7px;
+        font-size: 0.68rem;
     }
 
     .identity-tabs {
@@ -1016,15 +1082,15 @@ section {
     }
 
     .hero-content-wrapper::before {
-        font-size: 0.68rem;
-        padding: 5px 8px;
+        font-size: 0.66rem;
+        padding: 4px 8px;
     }
 
     .about-statement {
-        font-size: clamp(1.6rem, 7.5vw, 2.5rem);
+        font-size: clamp(1.4rem, 7vw, 2.2rem);
     }
 
     .about-text p {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
     }
 }
