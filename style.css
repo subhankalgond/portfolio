@@ -5,16 +5,17 @@
    ========================================== */
 :root {
     /* Color Palette */
-    --bg-paper: #F3F0E8;        /* Warm Paper Primary Background */
-    --ink-black: #171717;       /* Ink Black for Typography & Borders */
-    --signal-yellow: #E8F05A;   /* Signal Yellow Accent */
-    --muted-concrete: #D8D4CA;  /* Muted Concrete Secondary */
-    --pure-white: #FFFFFF;      /* Sharp Highlights */
+    --bg-paper: #F5F0E6;        /* Warm Off-White Primary Background */
+    --ink-black: #171717;       /* Primary Text & Borders (Near-Black) */
+    --signal-yellow: #E8F05A;   /* Primary Accent Yellow */
+    --coral-accent: #FF795B;    /* Secondary Coral Accent (Used Sparingly) */
+    --muted-concrete: #D8D2C5;  /* Supporting Neutral */
+    --pure-white: #FFFFFF;      /* Selective Contrast */
 
     /* Dark Mode / Section Palette */
     --dark-bg: #171717;
     --dark-surface: #222222;
-    --dark-text: #F3F0E8;
+    --dark-text: #F5F0E6;
     --dark-muted: #A39E93;
     --dark-border: #3A3A3A;
 
@@ -444,6 +445,12 @@ section {
     padding: 3px 10px;
     font-weight: 700;
     white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.bento-item:hover .project-category {
+    background-color: var(--coral-accent);
+    color: var(--ink-black);
 }
 
 .project-info p {
