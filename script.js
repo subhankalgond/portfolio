@@ -6,8 +6,51 @@ if (history.scrollRestoration) {
 }
 window.scrollTo(0, 0);
 
-// Initialize icons
-lucide.createIcons();
+// Mobile Navigation Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const header = document.querySelector('.header');
+const navLinks = document.getElementById('navLinks');
+
+if (menuToggle && header) {
+    const toggleMenu = (open) => {
+        const isOpen = open !== undefined ? open : !header.classList.contains('nav-open');
+        header.classList.toggle('nav-open', isOpen);
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        
+        const textSpan = menuToggle.querySelector('.menu-toggle-text');
+        const iconSpan = menuToggle.querySelector('.menu-toggle-icon');
+        if (textSpan) textSpan.textContent = isOpen ? 'CLOSE' : 'MENU';
+        if (iconSpan) iconSpan.textContent = isOpen ? '✕' : '☰';
+    };
+
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Close on nav item click
+    if (navLinks) {
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu(false);
+            });
+        });
+    }
+
+    // Close when clicking outside header
+    document.addEventListener('click', (e) => {
+        if (header.classList.contains('nav-open') && !header.contains(e.target)) {
+            toggleMenu(false);
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && header.classList.contains('nav-open')) {
+            toggleMenu(false);
+        }
+    });
+}
 
 // Scroll Reveal Animation with ultra-smooth early trigger
 const revealElements = document.querySelectorAll('.reveal');
@@ -36,8 +79,8 @@ revealElements.forEach(el => {
 });
 
 // Header scrolled class toggle
-const header = document.querySelector('.header');
 window.addEventListener('scroll', () => {
+    if (!header) return;
     if (window.scrollY > 30) {
         header.classList.add('scrolled');
     } else {
