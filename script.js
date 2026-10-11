@@ -50,6 +50,17 @@ if (menuToggle && header) {
             toggleMenu(false);
         }
     });
+
+    // Smooth scroll to top when brand is clicked without # in URL
+    const brandLink = document.querySelector('.brand');
+    if (brandLink) {
+        brandLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleMenu(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            history.pushState(null, '', window.location.pathname);
+        });
+    }
 }
 
 // Scroll Reveal Animation with ultra-smooth early trigger
