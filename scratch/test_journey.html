@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Journey — Interactive Roadmap</title>
+  <link rel="stylesheet" href="../Gsap X Webflow_files/gsap-webflow-offbrand.webflow.shared.1d2cc8aa4.min.css">
+  <style>
+    :root {
+      --journey-yellow: #ffe600;
+      --journey-dark: #000000;
+      --journey-card-bg: #fffdfa;
+      --journey-pink: #ff6584;
+      --journey-green: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0f172a;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .journey-wrapper {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #19b5e5;
+    }
+
+    /* Cloud Background */
+    .journey-sky-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    /* Main Roadmap Stage */
+    .journey-stage {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      pointer-events: auto;
+    }
+
+    /* SVG Road Canvas */
+    .journey-svg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Cards Overlay */
+    .journey-cards-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    /* Common Card Styling */
+    .j-card-wrap {
+      position: absolute;
+      pointer-events: auto;
+      transform-origin: center bottom;
+      will-change: transform, opacity;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.12));
+    }
+
+    .j-card {
+      background: var(--journey-card-bg);
+      border: 3px solid #000000;
+      border-radius: 14px;
+      box-shadow: 4px 4px 0px #000000;
+      padding: 0.65rem 0.95rem;
+      color: #000000;
+      font-size: clamp(0.72rem, 0.9vw, 0.95rem);
+      line-height: 1.35;
+      font-weight: 600;
+    }
+
+    .j-badge-yellow {
+      display: inline-flex;
+      align-items: center;
+      background: var(--journey-yellow);
+      color: #000000;
+      font-weight: 900;
+      font-size: clamp(0.82rem, 1.1vw, 1.2rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border: 2.5px solid #000000;
+      border-radius: 8px;
+      box-shadow: 3px 3px 0px #000000;
+      white-space: nowrap;
+    }
+
+    .j-badge-pink {
+      display: inline-flex;
+      align-items: center;
+      background: var(--journey-pink);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: clamp(0.68rem, 0.85vw, 0.95rem);
+      padding: 0.18rem 0.55rem;
+      border: 2px solid #000000;
+      border-radius: 9999px;
+      box-shadow: 2px 2px 0px #000000;
+      white-space: nowrap;
+    }
+
+    .j-badge-white {
+      display: inline-flex;
+      align-items: center;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 700;
+      font-size: clamp(0.68rem, 0.82vw, 0.9rem);
+      padding: 0.15rem 0.5rem;
+      border: 2px solid #000000;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0px #000000;
+      white-space: nowrap;
+    }
+
+    /* Title Block */
+    .journey-title-banner {
+      position: absolute;
+      left: 3.5%;
+      top: 4%;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transform: rotate(-3deg);
+      filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.85));
+    }
+
+    .title-my {
+      background: var(--journey-yellow);
+      color: #000000;
+      font-weight: 950;
+      font-size: clamp(1.8rem, 3.2vw, 3.8rem);
+      line-height: 0.9;
+      padding: 0.35rem 0.9rem 0.25rem;
+      border: 3.5px solid #000000;
+      border-radius: 8px;
+      margin-bottom: -6px;
+      margin-left: 12px;
+      z-index: 2;
+    }
+
+    .title-journey {
+      background: #ffffff;
+      color: #000000;
+      font-weight: 950;
+      font-size: clamp(2.4rem, 4.4vw, 5.2rem);
+      line-height: 0.95;
+      padding: 0.4rem 1.4rem 0.5rem;
+      border: 4px solid #000000;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+
+    .title-journey::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      bottom: -10px;
+      height: 10px;
+      background: var(--journey-pink);
+      border: 3.5px solid #000000;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      z-index: -1;
+    }
+
+    .title-arrow {
+      font-size: 0.95em;
+      margin-left: 0.2rem;
+    }
+
+    /* Sticker Illustration Wrapper */
+    .sticker-illus {
+      filter: drop-shadow(0 0 0 3.5px #ffffff) drop-shadow(2.5px 3.5px 0px #000000);
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .j-card-wrap:hover .sticker-illus {
+      transform: scale(1.06) rotate(-2deg);
+    }
+
+    /* Bullet items */
+    .j-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      margin-top: 0.35rem;
+    }
+
+    .j-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      color: #1a1a1a;
+      font-size: clamp(0.7rem, 0.82vw, 0.92rem);
+      font-weight: 600;
+    }
+
+    .j-list li::before {
+      content: "•";
+      font-size: 1.1em;
+      color: #000000;
+      line-height: 1;
+    }
+
+    .j-list.checks li::before {
+      content: "";
+      display: none;
+    }
+
+    .check-box {
+      width: 15px;
+      height: 15px;
+      background: var(--journey-yellow);
+      border: 1.8px solid #000000;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .check-box.green {
+      background: #22c55e;
+      color: #ffffff;
+    }
+
+    /* Motion Indicator Pulse */
+    .road-indicator-glow {
+      animation: pulseIndicator 1.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseIndicator {
+      0% { r: 16; opacity: 0.4; }
+      100% { r: 24; opacity: 0.75; }
+    }
+  </style>
+</head>
+<body>
+  <div class="journey-wrapper">
+    <!-- Cloud Background -->
+    <img src="../Gsap X Webflow_files/68013ab170e0a7b7eb1a7ebe_sky.avif" alt="Sky" class="journey-sky-bg">
+
+    <div class="journey-stage">
+      <!-- Title Badge -->
+      <div class="journey-title-banner">
+        <div class="title-my">MY</div>
+        <div class="title-journey">JOURNEY <span class="title-arrow">↗</span></div>
+      </div>
+
+      <!-- SVG Winding Road -->
+      <svg class="journey-svg-canvas" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+        <defs>
+          <filter id="road-shadow" x="-5%" y="-5%" width="115%" height="115%">
+            <feDropShadow dx="3" dy="8" stdDeviation="0" flood-color="#000000" flood-opacity="1" />
+          </filter>
+        </defs>
+
+        <!-- 3D Extrusion Shadow Layer -->
+        <path id="road-extrude" d="M 0.0 1050.0 C 64.4 1013.4, 131.3 978.5, 200.1 947.5 C 268.8 916.5, 339.4 889.2, 411.3 867.7 C 483.2 846.2, 556.3 831.1, 630.3 821.7 C 704.2 812.2, 779.1 807.7, 854.6 804.3 C 930.1 800.9, 1006.4 798.2, 1082.7 794.7 C 1158.9 791.3, 1234.9 787.8, 1309.2 784.8 C 1383.5 781.9, 1454.9 781.7, 1525.9 777.1 C 1596.8 772.6, 1673.6 758.5, 1753.3 712.8 C 1832.9 667.0, 1811.4 596.9, 1727.8 563.1 C 1644.2 529.2, 1572.0 535.4, 1500.2 544.0 C 1428.3 552.7, 1354.7 557.9, 1279.4 558.9 C 1204.1 559.9, 1127.8 558.6, 1052.4 560.0 C 977.0 561.4, 902.7 565.6, 828.2 572.6 C 753.7 579.6, 678.7 592.0, 603.2 600.3 C 527.7 608.5, 452.3 607.2, 380.1 560.1 C 308.0 513.0, 307.5 432.2, 391.6 399.6 C 475.7 366.9, 547.8 377.7, 620.2 379.7 C 692.5 381.8, 770.8 367.6, 845.0 368.3 C 919.3 369.1, 984.8 398.3, 1067.8 382.6 C 1150.7 367.0, 1112.1 261.3, 1159.8 222.6 C 1207.4 183.8, 1334.3 196.8, 1403.2 190.9 C 1472.0 185.0, 1538.6 166.9, 1610.4 138.8 C 1682.3 110.6, 1754.9 76.0, 1820.0 50.0" fill="none" stroke="#22180c" stroke-width="56" stroke-linecap="round" stroke-linejoin="round" transform="translate(0, 7)" />
+
+        <!-- Road Black Border -->
+        <path id="road-border" d="M 0.0 1050.0 C 64.4 1013.4, 131.3 978.5, 200.1 947.5 C 268.8 916.5, 339.4 889.2, 411.3 867.7 C 483.2 846.2, 556.3 831.1, 630.3 821.7 C 704.2 812.2, 779.1 807.7, 854.6 804.3 C 930.1 800.9, 1006.4 798.2, 1082.7 794.7 C 1158.9 791.3, 1234.9 787.8, 1309.2 784.8 C 1383.5 781.9, 1454.9 781.7, 1525.9 777.1 C 1596.8 772.6, 1673.6 758.5, 1753.3 712.8 C 1832.9 667.0, 1811.4 596.9, 1727.8 563.1 C 1644.2 529.2, 1572.0 535.4, 1500.2 544.0 C 1428.3 552.7, 1354.7 557.9, 1279.4 558.9 C 1204.1 559.9, 1127.8 558.6, 1052.4 560.0 C 977.0 561.4, 902.7 565.6, 828.2 572.6 C 753.7 579.6, 678.7 592.0, 603.2 600.3 C 527.7 608.5, 452.3 607.2, 380.1 560.1 C 308.0 513.0, 307.5 432.2, 391.6 399.6 C 475.7 366.9, 547.8 377.7, 620.2 379.7 C 692.5 381.8, 770.8 367.6, 845.0 368.3 C 919.3 369.1, 984.8 398.3, 1067.8 382.6 C 1150.7 367.0, 1112.1 261.3, 1159.8 222.6 C 1207.4 183.8, 1334.3 196.8, 1403.2 190.9 C 1472.0 185.0, 1538.6 166.9, 1610.4 138.8 C 1682.3 110.6, 1754.9 76.0, 1820.0 50.0" fill="none" stroke="#000000" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" />
+
+        <!-- Cream Road Surface -->
+        <path id="road-surface" d="M 0.0 1050.0 C 64.4 1013.4, 131.3 978.5, 200.1 947.5 C 268.8 916.5, 339.4 889.2, 411.3 867.7 C 483.2 846.2, 556.3 831.1, 630.3 821.7 C 704.2 812.2, 779.1 807.7, 854.6 804.3 C 930.1 800.9, 1006.4 798.2, 1082.7 794.7 C 1158.9 791.3, 1234.9 787.8, 1309.2 784.8 C 1383.5 781.9, 1454.9 781.7, 1525.9 777.1 C 1596.8 772.6, 1673.6 758.5, 1753.3 712.8 C 1832.9 667.0, 1811.4 596.9, 1727.8 563.1 C 1644.2 529.2, 1572.0 535.4, 1500.2 544.0 C 1428.3 552.7, 1354.7 557.9, 1279.4 558.9 C 1204.1 559.9, 1127.8 558.6, 1052.4 560.0 C 977.0 561.4, 902.7 565.6, 828.2 572.6 C 753.7 579.6, 678.7 592.0, 603.2 600.3 C 527.7 608.5, 452.3 607.2, 380.1 560.1 C 308.0 513.0, 307.5 432.2, 391.6 399.6 C 475.7 366.9, 547.8 377.7, 620.2 379.7 C 692.5 381.8, 770.8 367.6, 845.0 368.3 C 919.3 369.1, 984.8 398.3, 1067.8 382.6 C 1150.7 367.0, 1112.1 261.3, 1159.8 222.6 C 1207.4 183.8, 1334.3 196.8, 1403.2 190.9 C 1472.0 185.0, 1538.6 166.9, 1610.4 138.8 C 1682.3 110.6, 1754.9 76.0, 1820.0 50.0" fill="none" stroke="#fffbf0" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" />
+
+        <!-- Yellow Center Lane Stripe -->
+        <path id="road-stripe" d="M 0.0 1050.0 C 64.4 1013.4, 131.3 978.5, 200.1 947.5 C 268.8 916.5, 339.4 889.2, 411.3 867.7 C 483.2 846.2, 556.3 831.1, 630.3 821.7 C 704.2 812.2, 779.1 807.7, 854.6 804.3 C 930.1 800.9, 1006.4 798.2, 1082.7 794.7 C 1158.9 791.3, 1234.9 787.8, 1309.2 784.8 C 1383.5 781.9, 1454.9 781.7, 1525.9 777.1 C 1596.8 772.6, 1673.6 758.5, 1753.3 712.8 C 1832.9 667.0, 1811.4 596.9, 1727.8 563.1 C 1644.2 529.2, 1572.0 535.4, 1500.2 544.0 C 1428.3 552.7, 1354.7 557.9, 1279.4 558.9 C 1204.1 559.9, 1127.8 558.6, 1052.4 560.0 C 977.0 561.4, 902.7 565.6, 828.2 572.6 C 753.7 579.6, 678.7 592.0, 603.2 600.3 C 527.7 608.5, 452.3 607.2, 380.1 560.1 C 308.0 513.0, 307.5 432.2, 391.6 399.6 C 475.7 366.9, 547.8 377.7, 620.2 379.7 C 692.5 381.8, 770.8 367.6, 845.0 368.3 C 919.3 369.1, 984.8 398.3, 1067.8 382.6 C 1150.7 367.0, 1112.1 261.3, 1159.8 222.6 C 1207.4 183.8, 1334.3 196.8, 1403.2 190.9 C 1472.0 185.0, 1538.6 166.9, 1610.4 138.8 C 1682.3 110.6, 1754.9 76.0, 1820.0 50.0" fill="none" stroke="#ffd000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+
+        <!-- Paper Airplane Flight Trail -->
+        <path d="M 1720 110 Q 1770 80, 1820 50" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="6 6" />
+
+        <!-- Moving Glowing Indicator -->
+        <g id="road-indicator" style="transform: translate(-100px, -100px);">
+          <circle class="road-indicator-glow" r="20" fill="#ffd000" />
+          <circle r="10" fill="#ffe600" stroke="#000000" stroke-width="3" />
+          <circle r="4" fill="#ffffff" />
+        </g>
+      </svg>
+
+      <!-- Milestone Elements Overlay -->
+      <div class="journey-cards-layer">
+
+        <!-- 1. THE BEGINNING -->
+        <div id="m1-beginning" class="j-card-wrap" style="left: 2.5%; top: 76%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <svg class="sticker-illus" width="135" height="100" viewBox="0 0 135 100" fill="none">
+              <!-- Post -->
+              <rect x="56" y="55" width="14" height="42" rx="2" fill="#d97706" stroke="#000000" stroke-width="3.2" />
+              <!-- Signboard -->
+              <path d="M 12 18 L 86 18 L 102 36 L 86 54 L 12 54 Z" fill="#ffe600" stroke="#000000" stroke-width="3.5" />
+              <text x="20" y="32" font-size="11" font-weight="950" fill="#000000" font-family="sans-serif">THE</text>
+              <text x="18" y="48" font-size="13" font-weight="950" fill="#000000" font-family="sans-serif">BEGINNING</text>
+            </svg>
+            <div class="j-card" style="padding: 0.35rem 0.65rem; margin-top: -6px; font-size: 0.76rem; border-radius: 8px;">
+              Where the journey started.
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SCHOOL (Class 10 CBSE 89%) -->
+        <div id="m2-school" class="j-card-wrap" style="left: 12.5%; top: 62%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 250px;">
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -8px; z-index: 2;">
+              <!-- School SVG -->
+              <svg class="sticker-illus" width="110" height="75" viewBox="0 0 110 75" fill="none">
+                <!-- Lawn -->
+                <path d="M 6 68 Q 55 64, 104 68 Z" fill="#22c55e" stroke="#000000" stroke-width="2.5" />
+                <!-- Facade -->
+                <rect x="18" y="30" width="74" height="38" fill="#fef3c7" stroke="#000000" stroke-width="3" />
+                <!-- Windows -->
+                <rect x="24" y="36" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="40" y="36" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="60" y="36" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="76" y="36" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <!-- Door -->
+                <path d="M 49 52 A 6 6 0 0 1 61 52 L 61 68 L 49 68 Z" fill="#0284c7" stroke="#000000" stroke-width="2.5" />
+                <!-- Roof -->
+                <path d="M 12 30 L 55 10 L 98 30 Z" fill="#ef4444" stroke="#000000" stroke-width="3" />
+                <!-- Cupola -->
+                <rect x="48" y="2" width="14" height="10" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                <circle cx="55" cy="7" r="3.5" fill="#ffffff" stroke="#000000" stroke-width="1.8" />
+                <line x1="55" y1="2" x2="55" y2="-4" stroke="#000000" stroke-width="2" />
+                <path d="M 55 -4 L 62 -1 L 55 2 Z" fill="#ef4444" stroke="#000000" stroke-width="1.5" />
+              </svg>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div class="j-badge-yellow" style="transform: rotate(2deg);">SCHOOL</div>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                  <span class="j-badge-white">Class 10 (CBSE)</span>
+                  <span class="j-badge-pink">89%</span>
+                </div>
+              </div>
+            </div>
+            <div class="j-card" style="width: 100%;">
+              <ul class="j-list">
+                <li>Built my first websites</li>
+                <li>Discovered my love for tech</li>
+                <li>Started exploring programming</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. CLASS 12 (CBSE 79%) -->
+        <div id="m3-class12" class="j-card-wrap" style="left: 36.5%; top: 61%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 250px;">
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+              <!-- Books SVG -->
+              <svg class="sticker-illus" width="75" height="58" viewBox="0 0 75 58" fill="none">
+                <!-- Book 3 (Bottom - Teal) -->
+                <path d="M 8 44 L 62 38 L 70 48 L 16 54 Z" fill="#06b6d4" stroke="#000000" stroke-width="2.5" />
+                <rect x="16" y="48" width="54" height="5" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                <!-- Book 2 (Middle - Green) -->
+                <path d="M 12 30 L 64 24 L 71 34 L 19 40 Z" fill="#10b981" stroke="#000000" stroke-width="2.5" />
+                <rect x="19" y="34" width="52" height="5" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                <!-- Book 1 (Top - Red) -->
+                <path d="M 15 15 L 63 9 L 69 19 L 21 25 Z" fill="#ef4444" stroke="#000000" stroke-width="2.5" />
+                <rect x="21" y="19" width="48" height="5" fill="#ffffff" stroke="#000000" stroke-width="2" />
+              </svg>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <div class="j-badge-yellow" style="transform: rotate(-1.5deg);">Class 12 (CBSE)</div>
+                <div class="j-badge-pink">79%</div>
+              </div>
+            </div>
+            <div class="j-card" style="width: 100%;">
+              <ul class="j-list">
+                <li>Went deeper into CS & problem solving</li>
+                <li>Built small projects & experiments</li>
+                <li>Participated in tech events</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. COLLEGE (MSIT Kolkata, 2024-2028) -->
+        <div id="m4-college" class="j-card-wrap" style="left: 64%; top: 55%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 290px;">
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -10px; z-index: 2;">
+              <!-- College Building SVG -->
+              <svg class="sticker-illus" width="115" height="85" viewBox="0 0 115 85" fill="none">
+                <!-- Lawn -->
+                <path d="M 4 78 Q 60 70, 110 78 Z" fill="#4ade80" stroke="#000000" stroke-width="2.5" />
+                <circle cx="18" cy="62" r="12" fill="#22c55e" stroke="#000000" stroke-width="2.5" />
+                <!-- Modern Building -->
+                <path d="M 32 74 L 32 30 L 68 18 L 102 28 L 102 72 Z" fill="#f8fafc" stroke="#000000" stroke-width="3" />
+                <!-- Left Wing Windows -->
+                <rect x="38" y="36" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="50" y="34" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="38" y="48" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="50" y="46" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <!-- Right Wing Windows -->
+                <rect x="74" y="34" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="86" y="36" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="74" y="46" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <rect x="86" y="48" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+              </svg>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <div class="j-badge-yellow" style="transform: rotate(2deg);">COLLEGE</div>
+                <div class="j-badge-white" style="font-size: 0.72rem;">B.Tech CSE (IoT) • MSIT, Kolkata</div>
+                <div class="j-badge-pink" style="align-self: flex-start;">2024 – 2028</div>
+              </div>
+            </div>
+            <div class="j-card" style="width: 100%;">
+              <ul class="j-list">
+                <li>Exploring Full-Stack, Cybersecurity & IoT</li>
+                <li>Building real-world and security-focused projects</li>
+                <li><strong>CGPA: 7.4 / 10.0</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. PROJECTS (Laptop, Vexore, Sage, JobMap) -->
+        <div id="m5-projects" class="j-card-wrap" style="left: 20%; top: 38%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 285px;">
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+              <!-- Laptop SVG -->
+              <svg class="sticker-illus" width="75" height="60" viewBox="0 0 75 60" fill="none">
+                <!-- Screen -->
+                <rect x="14" y="10" width="46" height="32" rx="3" fill="#0f172a" stroke="#000000" stroke-width="3" />
+                <text x="26" y="32" font-size="14" font-weight="900" fill="#38bdf8" font-family="monospace">&lt;/&gt;</text>
+                <!-- Base -->
+                <path d="M 6 42 L 68 42 L 62 52 L 12 52 Z" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+                <line x1="28" y1="46" x2="46" y2="46" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+              </svg>
+              <div class="j-badge-yellow" style="transform: rotate(-2deg);">PROJECTS</div>
+            </div>
+            <div class="j-card" style="width: 100%;">
+              <ul class="j-list checks">
+                <li><span class="check-box">✔</span> <span><strong>Vexore</strong> — SaaS Security Auditor</span></li>
+                <li><span class="check-box">✔</span> <span><strong>Project SAGE</strong> — AI-Powered EDR</span></li>
+                <li><span class="check-box">✔</span> <span><strong>KolkataJobMap</strong> — Job Discovery Platform</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. CREATOR & BUILDER (@echo__builds) -->
+        <div id="m6-creator" class="j-card-wrap" style="left: 61%; top: 32%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 255px;">
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+              <!-- Camera SVG -->
+              <svg class="sticker-illus" width="65" height="52" viewBox="0 0 65 52" fill="none">
+                <rect x="8" y="14" width="40" height="28" rx="6" fill="#f43f5e" stroke="#000000" stroke-width="3" />
+                <path d="M 48 22 L 60 16 L 60 40 L 48 34 Z" fill="#f43f5e" stroke="#000000" stroke-width="2.5" />
+                <circle cx="28" cy="28" r="9" fill="#000000" />
+                <polygon points="26,23 33,28 26,33" fill="#ffffff" />
+                <rect x="14" y="8" width="12" height="6" rx="2" fill="#ffffff" stroke="#000000" stroke-width="2" />
+              </svg>
+              <div class="j-badge-yellow" style="transform: rotate(2deg);">CREATOR & BUILDER</div>
+            </div>
+            <div class="j-card" style="width: 100%;">
+              <ul class="j-list">
+                <li><strong>@echo__builds</strong> (5.5K+ followers)</li>
+                <li>Share tech, security & AI content</li>
+                <li>Freelance web development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. STARTUP JOURNEY (Vexore) -->
+        <div id="m7-startup" class="j-card-wrap" style="left: 31%; top: 16%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 270px;">
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -8px; z-index: 2;">
+              <!-- Rocket SVG -->
+              <svg class="sticker-illus" width="75" height="75" viewBox="0 0 75 75" fill="none">
+                <!-- Flame -->
+                <path d="M 22 52 Q 10 65, 18 72 Q 28 66, 32 58 Z" fill="#f59e0b" stroke="#000000" stroke-width="2" />
+                <path d="M 23 54 Q 16 63, 21 68 Q 27 63, 29 58 Z" fill="#ffe600" />
+                <!-- Body -->
+                <path d="M 26 48 L 48 26 C 60 14, 66 10, 68 8 C 66 10, 62 16, 50 28 L 28 50 Z" fill="#ffffff" stroke="#000000" stroke-width="3" />
+                <!-- Nosecone -->
+                <path d="M 52 24 C 62 14, 66 10, 68 8 C 66 10, 62 14, 52 24 Z" fill="#ef4444" stroke="#000000" stroke-width="2" />
+                <!-- Window -->
+                <circle cx="44" cy="28" r="6" fill="#38bdf8" stroke="#000000" stroke-width="2.5" />
+                <!-- Fins -->
+                <path d="M 22 46 L 14 48 L 20 54 Z" fill="#ef4444" stroke="#000000" stroke-width="2" />
+                <path d="M 40 64 L 46 72 L 48 64 Z" fill="#ef4444" stroke="#000000" stroke-width="2" />
+              </svg>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <div class="j-badge-yellow" style="transform: rotate(-1.5deg);">STARTUP JOURNEY</div>
+                <div class="j-badge-pink">Vexore</div>
+              </div>
+            </div>
+            <div class="j-card" style="width: 100%;">
+              <ul class="j-list checks">
+                <li><span class="check-box" style="background:#000; color:#fff;">✔</span> <span>Building a security product for AI-built apps</span></li>
+                <li><span class="check-box" style="background:#000; color:#fff;">✔</span> <span>Automating vulnerability checks, RLS audits & pen-testing</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. FUTURE VISION (Binoculars) -->
+        <div id="m8-future" class="j-card-wrap" style="left: 64%; top: 7%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 295px;">
+            <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+              <!-- Binoculars SVG -->
+              <svg class="sticker-illus" width="75" height="50" viewBox="0 0 75 50" fill="none">
+                <!-- Left Barrel -->
+                <rect x="8" y="10" width="24" height="28" rx="4" fill="#0284c7" stroke="#000000" stroke-width="3" />
+                <circle cx="20" cy="24" r="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <circle cx="18" cy="21" r="3" fill="#ffffff" />
+                <!-- Right Barrel -->
+                <rect x="42" y="10" width="24" height="28" rx="4" fill="#0284c7" stroke="#000000" stroke-width="3" />
+                <circle cx="54" cy="24" r="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                <circle cx="52" cy="21" r="3" fill="#ffffff" />
+                <!-- Bridge -->
+                <rect x="30" y="20" width="14" height="8" rx="2" fill="#1e293b" stroke="#000000" stroke-width="2" />
+              </svg>
+              <div class="j-badge-yellow" style="transform: rotate(1.5deg);">FUTURE VISION</div>
+            </div>
+            <div class="j-card" style="width: 100%;">
+              <ul class="j-list checks">
+                <li><span class="check-box green">✔</span> <span>Build Vexore into a global security platform</span></li>
+                <li><span class="check-box green">✔</span> <span>Work in Application Security (AppSec)</span></li>
+                <li><span class="check-box green">✔</span> <span>Contribute to open-source & security research</span></li>
+                <li><span class="check-box green">✔</span> <span>Build products that make the web safer</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. PAPER AIRPLANE -->
+        <div id="m9-airplane" class="j-card-wrap" style="left: 92%; top: 3.5%;">
+          <svg class="sticker-illus" width="70" height="50" viewBox="0 0 70 50" fill="none" style="transform: rotate(-10deg);">
+            <path d="M 6 36 L 64 6 L 38 44 Z" fill="#ffe600" stroke="#000000" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M 64 6 L 38 44 L 28 32 Z" fill="#f59e0b" stroke="#000000" stroke-width="2.5" stroke-linejoin="round" />
+            <path d="M 28 32 L 34 40 L 38 34 Z" fill="#d97706" stroke="#000000" stroke-width="2" />
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

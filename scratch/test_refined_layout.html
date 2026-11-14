@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Journey — Illustrated Roadmap</title>
+  <link rel="stylesheet" href="../Gsap X Webflow_files/gsap-webflow-offbrand.webflow.shared.1d2cc8aa4.min.css">
+  <style>
+    :root {
+      --j-yellow: #ffe600;
+      --j-black: #000000;
+      --j-card-bg: #fffdfa;
+      --j-pink: #ff5277;
+      --j-green: #22c55e;
+      --j-blue: #38bdf8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #ffe9cf;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .journey-section {
+      position: relative;
+      width: 100%;
+      height: 700vh;
+      background: transparent;
+    }
+
+    .journey-pin-box {
+      position: sticky;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Cloud Background */
+    .journey-sky-container {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .journey-sky-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Title for cloud popup transition */
+    .journey-intro-title {
+      position: absolute;
+      z-index: 4;
+      font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #270f03;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    /* Fullscreen Roadmap Stage */
+    .journey-stage-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: auto;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    /* 16:9 Inner Proportional Container */
+    .journey-stage-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 1920px;
+      max-height: 1080px;
+      margin: 0 auto;
+    }
+
+    /* SVG Road */
+    .journey-svg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Cards Layer */
+    .journey-cards-layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 12;
+      pointer-events: none;
+    }
+
+    /* Milestone Wrap */
+    .j-milestone {
+      position: absolute;
+      pointer-events: auto;
+      transform-origin: center bottom;
+      will-change: transform, opacity;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.12));
+      transition: filter 0.25s ease;
+    }
+
+    .j-milestone:hover {
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,0.18));
+      z-index: 30 !important;
+    }
+
+    /* Card Styling */
+    .j-card {
+      background: var(--j-card-bg);
+      border: 3.5px solid #000000;
+      border-radius: 14px;
+      box-shadow: 4px 4px 0px #000000;
+      padding: 0.65rem 0.95rem;
+      color: #000000;
+      font-size: clamp(0.72rem, 0.88vw, 0.94rem);
+      line-height: 1.35;
+      font-weight: 600;
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .j-milestone:hover .j-card {
+      transform: translateY(-2px);
+    }
+
+    /* Badges */
+    .j-badge-yellow {
+      display: inline-flex;
+      align-items: center;
+      background: var(--j-yellow);
+      color: #000000;
+      font-weight: 950;
+      font-size: clamp(0.85rem, 1.1vw, 1.25rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.8rem;
+      border: 3px solid #000000;
+      border-radius: 8px;
+      box-shadow: 3px 3px 0px #000000;
+      white-space: nowrap;
+    }
+
+    .j-badge-pink {
+      display: inline-flex;
+      align-items: center;
+      background: var(--j-pink);
+      color: #ffffff;
+      font-weight: 850;
+      font-size: clamp(0.72rem, 0.88vw, 0.98rem);
+      padding: 0.2rem 0.65rem;
+      border: 2.5px solid #000000;
+      border-radius: 9999px;
+      box-shadow: 2.5px 2.5px 0px #000000;
+      white-space: nowrap;
+    }
+
+    .j-badge-white {
+      display: inline-flex;
+      align-items: center;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 750;
+      font-size: clamp(0.7rem, 0.84vw, 0.92rem);
+      padding: 0.18rem 0.55rem;
+      border: 2.5px solid #000000;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0px #000000;
+      white-space: nowrap;
+    }
+
+    /* Title Badge */
+    .journey-title-banner {
+      position: absolute;
+      left: 3.2%;
+      top: 3.5%;
+      z-index: 25;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transform: rotate(-3deg);
+      filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.85));
+      pointer-events: auto;
+    }
+
+    .title-my {
+      background: var(--j-yellow);
+      color: #000000;
+      font-weight: 950;
+      font-size: clamp(2rem, 3.4vw, 4rem);
+      line-height: 0.9;
+      padding: 0.4rem 1rem 0.25rem;
+      border: 4px solid #000000;
+      border-radius: 8px;
+      margin-bottom: -8px;
+      margin-left: 14px;
+      z-index: 2;
+      box-shadow: 3px 3px 0px #000000;
+    }
+
+    .title-journey {
+      background: #ffffff;
+      color: #000000;
+      font-weight: 950;
+      font-size: clamp(2.6rem, 4.6vw, 5.5rem);
+      line-height: 0.95;
+      padding: 0.45rem 1.5rem 0.55rem;
+      border: 4px solid #000000;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      box-shadow: 4px 4px 0px #000000;
+    }
+
+    .title-journey::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      bottom: -11px;
+      height: 11px;
+      background: var(--j-pink);
+      border: 4px solid #000000;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      z-index: -1;
+    }
+
+    /* Sticker Illustrations */
+    .sticker-illus {
+      filter: drop-shadow(0 0 0 3.5px #ffffff) drop-shadow(2.5px 3.5px 0px #000000);
+      display: block;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .j-milestone:hover .sticker-illus {
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    /* Lists */
+    .j-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.32rem;
+      margin-top: 0.35rem;
+    }
+
+    .j-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+      color: #111111;
+      font-size: clamp(0.72rem, 0.84vw, 0.94rem);
+      font-weight: 600;
+    }
+
+    .j-list li::before {
+      content: "•";
+      font-size: 1.2em;
+      color: #000000;
+      line-height: 1;
+    }
+
+    .j-list.checks li::before {
+      content: "";
+      display: none;
+    }
+
+    .check-box {
+      width: 17px;
+      height: 17px;
+      background: var(--j-yellow);
+      border: 2px solid #000000;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      font-size: 11px;
+      font-weight: 950;
+      color: #000000;
+    }
+
+    .check-box.green {
+      background: #22c55e;
+      color: #ffffff;
+    }
+
+    .check-box.dark {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    /* Animated pulse glow on moving indicator */
+    .road-indicator-glow {
+      animation: pulseGlow 1.2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { r: 16; opacity: 0.35; }
+      100% { r: 24; opacity: 0.8; }
+    }
+
+    /* Speed bursts / decorative rays */
+    .burst-line {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 9999px;
+      filter: drop-shadow(1px 1px 0 #000000);
+      pointer-events: none;
+    }
+  </style>
+  <script src="../Gsap X Webflow_files/gsap.min.js"></script>
+  <script src="../Gsap X Webflow_files/ScrollTrigger.min.js"></script>
+  <script src="../Gsap X Webflow_files/MotionPathPlugin.min.js"></script>
+</head>
+<body>
+
+  <!-- Pinned Roadmap Section -->
+  <section id="journey-track" class="journey-section">
+    <div class="journey-pin-box">
+      <!-- Title before cloud expands -->
+      <div class="journey-intro-title">System Architecture</div>
+
+      <!-- Cloud Background Container -->
+      <div class="journey-sky-container">
+        <img src="../Gsap X Webflow_files/68013ab170e0a7b7eb1a7ebe_sky.avif" alt="Sky & Clouds" class="journey-sky-img">
+      </div>
+
+      <!-- Interactive Journey Overlay -->
+      <div class="journey-stage-wrap">
+        <div class="journey-stage-inner">
+
+          <!-- Title Banner (Top Left) -->
+          <div class="journey-title-banner">
+            <div class="title-my">MY</div>
+            <div class="title-journey">JOURNEY <span style="font-size:0.92em; margin-left:4px;">↗</span></div>
+            <!-- Decorative Zigzag under title -->
+            <svg width="120" height="18" viewBox="0 0 120 18" fill="none" style="margin-top: 6px; margin-left: 20px;">
+              <path d="M 4 8 L 24 14 L 44 4 L 64 14 L 84 4 L 104 14" stroke="#000000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+
+          <!-- SVG Winding Road Canvas -->
+          <svg class="journey-svg-canvas" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+            <!-- 3D Extrusion Layer -->
+            <path id="road-extrude" class="road-path" d="M -0.0 1060.0 C 55.4 1022.8, 113.9 990.1, 174.7 962.4 C 235.5 934.7, 298.6 911.9, 363.0 894.5 C 427.4 877.0, 493.2 865.1, 559.4 856.0 C 625.6 846.9, 692.2 840.5, 758.4 834.5 C 824.6 828.5, 890.8 823.1, 957.4 817.7 C 1024.0 812.2, 1091.4 806.5, 1158.9 800.6 C 1226.3 794.8, 1293.5 789.0, 1358.7 784.2 C 1423.9 779.4, 1485.3 777.1, 1550.4 770.4 C 1615.4 763.8, 1696.3 754.7, 1762.5 725.1 C 1828.8 695.4, 1831.3 612.1, 1782.2 562.2 C 1733.1 512.3, 1656.2 520.8, 1586.7 519.9 C 1517.2 519.0, 1452.7 513.0, 1387.3 510.3 C 1321.8 507.6, 1255.2 508.5, 1188.2 511.5 C 1121.2 514.5, 1053.9 519.6, 987.1 524.9 C 920.2 530.2, 853.7 535.6, 787.4 538.5 C 721.2 541.3, 655.6 540.5, 589.0 539.8 C 522.5 539.0, 453.8 542.5, 385.5 541.1 C 317.1 539.7, 245.2 520.5, 202.0 462.3 C 158.8 404.1, 207.2 335.2, 271.6 304.1 C 335.9 272.9, 401.6 271.5, 468.1 269.8 C 534.6 268.1, 601.8 267.2, 668.4 263.5 C 734.9 259.8, 800.1 250.4, 866.4 248.4 C 932.7 246.4, 1002.6 262.3, 1071.1 278.9 C 1139.6 295.5, 1189.9 254.3, 1246.0 215.7 C 1302.1 177.1, 1370.2 166.4, 1435.9 154.4 C 1501.6 142.3, 1567.0 130.2, 1630.6 110.3 C 1694.3 90.4, 1756.9 66.0, 1820.0 45.0" fill="none" stroke="#22180c" stroke-width="58" stroke-linecap="round" stroke-linejoin="round" transform="translate(0, 8)" />
+            <!-- Black Outline Border -->
+            <path id="road-border" class="road-path" d="M -0.0 1060.0 C 55.4 1022.8, 113.9 990.1, 174.7 962.4 C 235.5 934.7, 298.6 911.9, 363.0 894.5 C 427.4 877.0, 493.2 865.1, 559.4 856.0 C 625.6 846.9, 692.2 840.5, 758.4 834.5 C 824.6 828.5, 890.8 823.1, 957.4 817.7 C 1024.0 812.2, 1091.4 806.5, 1158.9 800.6 C 1226.3 794.8, 1293.5 789.0, 1358.7 784.2 C 1423.9 779.4, 1485.3 777.1, 1550.4 770.4 C 1615.4 763.8, 1696.3 754.7, 1762.5 725.1 C 1828.8 695.4, 1831.3 612.1, 1782.2 562.2 C 1733.1 512.3, 1656.2 520.8, 1586.7 519.9 C 1517.2 519.0, 1452.7 513.0, 1387.3 510.3 C 1321.8 507.6, 1255.2 508.5, 1188.2 511.5 C 1121.2 514.5, 1053.9 519.6, 987.1 524.9 C 920.2 530.2, 853.7 535.6, 787.4 538.5 C 721.2 541.3, 655.6 540.5, 589.0 539.8 C 522.5 539.0, 453.8 542.5, 385.5 541.1 C 317.1 539.7, 245.2 520.5, 202.0 462.3 C 158.8 404.1, 207.2 335.2, 271.6 304.1 C 335.9 272.9, 401.6 271.5, 468.1 269.8 C 534.6 268.1, 601.8 267.2, 668.4 263.5 C 734.9 259.8, 800.1 250.4, 866.4 248.4 C 932.7 246.4, 1002.6 262.3, 1071.1 278.9 C 1139.6 295.5, 1189.9 254.3, 1246.0 215.7 C 1302.1 177.1, 1370.2 166.4, 1435.9 154.4 C 1501.6 142.3, 1567.0 130.2, 1630.6 110.3 C 1694.3 90.4, 1756.9 66.0, 1820.0 45.0" fill="none" stroke="#000000" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Cream Road Surface -->
+            <path id="road-surface" class="road-path" d="M -0.0 1060.0 C 55.4 1022.8, 113.9 990.1, 174.7 962.4 C 235.5 934.7, 298.6 911.9, 363.0 894.5 C 427.4 877.0, 493.2 865.1, 559.4 856.0 C 625.6 846.9, 692.2 840.5, 758.4 834.5 C 824.6 828.5, 890.8 823.1, 957.4 817.7 C 1024.0 812.2, 1091.4 806.5, 1158.9 800.6 C 1226.3 794.8, 1293.5 789.0, 1358.7 784.2 C 1423.9 779.4, 1485.3 777.1, 1550.4 770.4 C 1615.4 763.8, 1696.3 754.7, 1762.5 725.1 C 1828.8 695.4, 1831.3 612.1, 1782.2 562.2 C 1733.1 512.3, 1656.2 520.8, 1586.7 519.9 C 1517.2 519.0, 1452.7 513.0, 1387.3 510.3 C 1321.8 507.6, 1255.2 508.5, 1188.2 511.5 C 1121.2 514.5, 1053.9 519.6, 987.1 524.9 C 920.2 530.2, 853.7 535.6, 787.4 538.5 C 721.2 541.3, 655.6 540.5, 589.0 539.8 C 522.5 539.0, 453.8 542.5, 385.5 541.1 C 317.1 539.7, 245.2 520.5, 202.0 462.3 C 158.8 404.1, 207.2 335.2, 271.6 304.1 C 335.9 272.9, 401.6 271.5, 468.1 269.8 C 534.6 268.1, 601.8 267.2, 668.4 263.5 C 734.9 259.8, 800.1 250.4, 866.4 248.4 C 932.7 246.4, 1002.6 262.3, 1071.1 278.9 C 1139.6 295.5, 1189.9 254.3, 1246.0 215.7 C 1302.1 177.1, 1370.2 166.4, 1435.9 154.4 C 1501.6 142.3, 1567.0 130.2, 1630.6 110.3 C 1694.3 90.4, 1756.9 66.0, 1820.0 45.0" fill="none" stroke="#fffbf0" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" />
+            <!-- Yellow Center Lane Stripe -->
+            <path id="road-stripe" class="road-path" d="M -0.0 1060.0 C 55.4 1022.8, 113.9 990.1, 174.7 962.4 C 235.5 934.7, 298.6 911.9, 363.0 894.5 C 427.4 877.0, 493.2 865.1, 559.4 856.0 C 625.6 846.9, 692.2 840.5, 758.4 834.5 C 824.6 828.5, 890.8 823.1, 957.4 817.7 C 1024.0 812.2, 1091.4 806.5, 1158.9 800.6 C 1226.3 794.8, 1293.5 789.0, 1358.7 784.2 C 1423.9 779.4, 1485.3 777.1, 1550.4 770.4 C 1615.4 763.8, 1696.3 754.7, 1762.5 725.1 C 1828.8 695.4, 1831.3 612.1, 1782.2 562.2 C 1733.1 512.3, 1656.2 520.8, 1586.7 519.9 C 1517.2 519.0, 1452.7 513.0, 1387.3 510.3 C 1321.8 507.6, 1255.2 508.5, 1188.2 511.5 C 1121.2 514.5, 1053.9 519.6, 987.1 524.9 C 920.2 530.2, 853.7 535.6, 787.4 538.5 C 721.2 541.3, 655.6 540.5, 589.0 539.8 C 522.5 539.0, 453.8 542.5, 385.5 541.1 C 317.1 539.7, 245.2 520.5, 202.0 462.3 C 158.8 404.1, 207.2 335.2, 271.6 304.1 C 335.9 272.9, 401.6 271.5, 468.1 269.8 C 534.6 268.1, 601.8 267.2, 668.4 263.5 C 734.9 259.8, 800.1 250.4, 866.4 248.4 C 932.7 246.4, 1002.6 262.3, 1071.1 278.9 C 1139.6 295.5, 1189.9 254.3, 1246.0 215.7 C 1302.1 177.1, 1370.2 166.4, 1435.9 154.4 C 1501.6 142.3, 1567.0 130.2, 1630.6 110.3 C 1694.3 90.4, 1756.9 66.0, 1820.0 45.0" fill="none" stroke="#ffd000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+            
+            <!-- Paper Airplane Trajectory Line -->
+            <path d="M 1720 110 Q 1770 75, 1820 45" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-dasharray="6 6" />
+
+            <!-- Moving Glowing Indicator Bead -->
+            <g id="road-indicator" style="opacity: 0;">
+              <circle class="road-indicator-glow" r="22" fill="#ffd000" />
+              <circle r="11" fill="#ffe600" stroke="#000000" stroke-width="3" />
+              <circle r="4.5" fill="#ffffff" />
+            </g>
+          </svg>
+
+          <!-- Milestone Cards Layer -->
+          <div class="journey-cards-layer">
+
+            <!-- 1. THE BEGINNING -->
+            <div id="m1-beginning" class="j-milestone" style="left: 1.5%; top: 75%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                <svg class="sticker-illus" width="135" height="100" viewBox="0 0 135 100" fill="none">
+                  <rect x="56" y="55" width="14" height="42" rx="2" fill="#d97706" stroke="#000000" stroke-width="3.2" />
+                  <path d="M 12 18 L 86 18 L 102 36 L 86 54 L 12 54 Z" fill="#ffe600" stroke="#000000" stroke-width="3.5" />
+                  <text x="20" y="32" font-size="11" font-weight="950" fill="#000000" font-family="sans-serif">THE</text>
+                  <text x="18" y="48" font-size="13" font-weight="950" fill="#000000" font-family="sans-serif">BEGINNING</text>
+                </svg>
+                <div class="j-card" style="padding: 0.35rem 0.65rem; margin-top: -6px; font-size: 0.78rem; border-radius: 8px;">
+                  Where the journey started.
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. SCHOOL (Class 10 CBSE 89%) -->
+            <div id="m2-school" class="j-milestone" style="left: 13.5%; top: 63%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 255px;">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -8px; z-index: 2;">
+                  <!-- School Building SVG -->
+                  <svg class="sticker-illus" width="112" height="76" viewBox="0 0 112 76" fill="none">
+                    <path d="M 6 70 Q 56 65, 106 70 Z" fill="#22c55e" stroke="#000000" stroke-width="2.5" />
+                    <rect x="18" y="32" width="76" height="38" fill="#fef3c7" stroke="#000000" stroke-width="3" />
+                    <rect x="24" y="38" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="40" y="38" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="62" y="38" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="78" y="38" width="10" height="10" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <path d="M 50 52 A 6 6 0 0 1 62 52 L 62 70 L 50 70 Z" fill="#0284c7" stroke="#000000" stroke-width="2.5" />
+                    <path d="M 12 32 L 56 12 L 100 32 Z" fill="#ef4444" stroke="#000000" stroke-width="3" />
+                    <rect x="49" y="4" width="14" height="10" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                    <circle cx="56" cy="9" r="3.5" fill="#ffffff" stroke="#000000" stroke-width="1.8" />
+                    <line x1="56" y1="4" x2="56" y2="-3" stroke="#000000" stroke-width="2" />
+                    <path d="M 56 -3 L 64 0 L 56 3 Z" fill="#ef4444" stroke="#000000" stroke-width="1.5" />
+                  </svg>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div class="j-badge-yellow" style="transform: rotate(2deg);">SCHOOL</div>
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                      <span class="j-badge-white">Class 10 (CBSE)</span>
+                      <span class="j-badge-pink">89%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="j-card" style="width: 100%;">
+                  <ul class="j-list">
+                    <li>Built my first websites</li>
+                    <li>Discovered my love for tech</li>
+                    <li>Started exploring programming</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. CLASS 12 (CBSE 79%) -->
+            <div id="m3-class12" class="j-milestone" style="left: 37.5%; top: 61%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 255px;">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+                  <!-- Books SVG -->
+                  <svg class="sticker-illus" width="76" height="58" viewBox="0 0 76 58" fill="none">
+                    <path d="M 8 44 L 62 38 L 70 48 L 16 54 Z" fill="#06b6d4" stroke="#000000" stroke-width="2.5" />
+                    <rect x="16" y="48" width="54" height="5" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                    <path d="M 12 30 L 64 24 L 71 34 L 19 40 Z" fill="#10b981" stroke="#000000" stroke-width="2.5" />
+                    <rect x="19" y="34" width="52" height="5" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                    <path d="M 15 15 L 63 9 L 69 19 L 21 25 Z" fill="#ef4444" stroke="#000000" stroke-width="2.5" />
+                    <rect x="21" y="19" width="48" height="5" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                  </svg>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <div class="j-badge-yellow" style="transform: rotate(-1.5deg);">Class 12 (CBSE)</div>
+                    <div class="j-badge-pink">79%</div>
+                  </div>
+                </div>
+                <div class="j-card" style="width: 100%;">
+                  <ul class="j-list">
+                    <li>Went deeper into CS & problem solving</li>
+                    <li>Built small projects & experiments</li>
+                    <li>Participated in tech events</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. COLLEGE (MSIT Kolkata, 2024-2028) -->
+            <div id="m4-college" class="j-milestone" style="left: 64%; top: 55%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 295px;">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -10px; z-index: 2;">
+                  <!-- College Campus SVG -->
+                  <svg class="sticker-illus" width="115" height="85" viewBox="0 0 115 85" fill="none">
+                    <path d="M 4 78 Q 60 70, 110 78 Z" fill="#4ade80" stroke="#000000" stroke-width="2.5" />
+                    <circle cx="18" cy="62" r="12" fill="#22c55e" stroke="#000000" stroke-width="2.5" />
+                    <path d="M 32 74 L 32 30 L 68 18 L 102 28 L 102 72 Z" fill="#f8fafc" stroke="#000000" stroke-width="3" />
+                    <rect x="38" y="36" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="50" y="34" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="38" y="48" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="50" y="46" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="74" y="34" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="86" y="36" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="74" y="46" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <rect x="86" y="48" width="8" height="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                  </svg>
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div class="j-badge-yellow" style="transform: rotate(2deg);">COLLEGE</div>
+                    <div class="j-badge-white" style="font-size: 0.72rem;">B.Tech CSE (IoT) • MSIT, Kolkata</div>
+                    <div class="j-badge-pink" style="align-self: flex-start;">2024 – 2028</div>
+                  </div>
+                </div>
+                <div class="j-card" style="width: 100%;">
+                  <ul class="j-list">
+                    <li>Exploring Full-Stack, Cybersecurity & IoT</li>
+                    <li>Building real-world and security-focused projects</li>
+                    <li><strong>CGPA: 7.4 / 10.0</strong></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5. PROJECTS (Laptop, Vexore, Sage, JobMap) -->
+            <div id="m5-projects" class="j-milestone" style="left: 20%; top: 38%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 290px;">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+                  <!-- Laptop SVG -->
+                  <svg class="sticker-illus" width="76" height="60" viewBox="0 0 76 60" fill="none">
+                    <rect x="14" y="10" width="46" height="32" rx="3" fill="#0f172a" stroke="#000000" stroke-width="3" />
+                    <text x="26" y="32" font-size="14" font-weight="900" fill="#38bdf8" font-family="monospace">&lt;/&gt;</text>
+                    <path d="M 6 42 L 68 42 L 62 52 L 12 52 Z" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+                    <line x1="28" y1="46" x2="46" y2="46" stroke="#000000" stroke-width="2.5" stroke-linecap="round" />
+                  </svg>
+                  <div class="j-badge-yellow" style="transform: rotate(-2deg);">PROJECTS</div>
+                </div>
+                <div class="j-card" style="width: 100%;">
+                  <ul class="j-list checks">
+                    <li><span class="check-box">✔</span> <span><strong>Vexore</strong> — SaaS Security Auditor</span></li>
+                    <li><span class="check-box">✔</span> <span><strong>Project SAGE</strong> — AI-Powered EDR</span></li>
+                    <li><span class="check-box">✔</span> <span><strong>KolkataJobMap</strong> — Job Discovery Platform</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. CREATOR & BUILDER (@echo__builds) -->
+            <div id="m6-creator" class="j-milestone" style="left: 61%; top: 32%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 258px;">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+                  <!-- Camera SVG -->
+                  <svg class="sticker-illus" width="66" height="52" viewBox="0 0 66 52" fill="none">
+                    <rect x="8" y="14" width="40" height="28" rx="6" fill="#f43f5e" stroke="#000000" stroke-width="3" />
+                    <path d="M 48 22 L 60 16 L 60 40 L 48 34 Z" fill="#f43f5e" stroke="#000000" stroke-width="2.5" />
+                    <circle cx="28" cy="28" r="9" fill="#000000" />
+                    <polygon points="26,23 33,28 26,33" fill="#ffffff" />
+                    <rect x="14" y="8" width="12" height="6" rx="2" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                  </svg>
+                  <div class="j-badge-yellow" style="transform: rotate(2deg);">CREATOR & BUILDER</div>
+                </div>
+                <div class="j-card" style="width: 100%;">
+                  <ul class="j-list">
+                    <li><strong>@echo__builds</strong> (5.5K+ followers)</li>
+                    <li>Share tech, security & AI content</li>
+                    <li>Freelance web development</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. STARTUP JOURNEY (Vexore) -->
+            <div id="m7-startup" class="j-milestone" style="left: 31%; top: 16%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 275px;">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -8px; z-index: 2;">
+                  <!-- Rocket SVG -->
+                  <svg class="sticker-illus" width="76" height="76" viewBox="0 0 76 76" fill="none">
+                    <path d="M 22 52 Q 10 65, 18 72 Q 28 66, 32 58 Z" fill="#f59e0b" stroke="#000000" stroke-width="2" />
+                    <path d="M 23 54 Q 16 63, 21 68 Q 27 63, 29 58 Z" fill="#ffe600" />
+                    <path d="M 26 48 L 48 26 C 60 14, 66 10, 68 8 C 66 10, 62 16, 50 28 L 28 50 Z" fill="#ffffff" stroke="#000000" stroke-width="3" />
+                    <path d="M 52 24 C 62 14, 66 10, 68 8 C 66 10, 62 14, 52 24 Z" fill="#ef4444" stroke="#000000" stroke-width="2" />
+                    <circle cx="44" cy="28" r="6" fill="#38bdf8" stroke="#000000" stroke-width="2.5" />
+                    <path d="M 22 46 L 14 48 L 20 54 Z" fill="#ef4444" stroke="#000000" stroke-width="2" />
+                    <path d="M 40 64 L 46 72 L 48 64 Z" fill="#ef4444" stroke="#000000" stroke-width="2" />
+                  </svg>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <div class="j-badge-yellow" style="transform: rotate(-1.5deg);">STARTUP JOURNEY</div>
+                    <div class="j-badge-pink">Vexore</div>
+                  </div>
+                </div>
+                <div class="j-card" style="width: 100%;">
+                  <ul class="j-list checks">
+                    <li><span class="check-box dark">✔</span> <span>Building a security product for AI-built apps</span></li>
+                    <li><span class="check-box dark">✔</span> <span>Automating vulnerability checks, RLS audits & pen-testing</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8. FUTURE VISION (Binoculars) -->
+            <div id="m8-future" class="j-milestone" style="left: 64%; top: 7%;">
+              <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 300px;">
+                <div style="display: flex; align-items: flex-end; gap: 0.5rem; margin-bottom: -6px; z-index: 2;">
+                  <!-- Binoculars SVG -->
+                  <svg class="sticker-illus" width="76" height="52" viewBox="0 0 76 52" fill="none">
+                    <rect x="8" y="10" width="24" height="28" rx="4" fill="#0284c7" stroke="#000000" stroke-width="3" />
+                    <circle cx="20" cy="24" r="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <circle cx="18" cy="21" r="3" fill="#ffffff" />
+                    <rect x="42" y="10" width="24" height="28" rx="4" fill="#0284c7" stroke="#000000" stroke-width="3" />
+                    <circle cx="54" cy="24" r="8" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+                    <circle cx="52" cy="21" r="3" fill="#ffffff" />
+                    <rect x="30" y="20" width="14" height="8" rx="2" fill="#1e293b" stroke="#000000" stroke-width="2" />
+                  </svg>
+                  <div class="j-badge-yellow" style="transform: rotate(1.5deg);">FUTURE VISION</div>
+                </div>
+                <div class="j-card" style="width: 100%;">
+                  <ul class="j-list checks">
+                    <li><span class="check-box green">✔</span> <span>Build Vexore into a global security platform</span></li>
+                    <li><span class="check-box green">✔</span> <span>Work in Application Security (AppSec)</span></li>
+                    <li><span class="check-box green">✔</span> <span>Contribute to open-source & security research</span></li>
+                    <li><span class="check-box green">✔</span> <span>Build products that make the web safer</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9. PAPER AIRPLANE -->
+            <div id="m9-airplane" class="j-milestone" style="left: 92%; top: 3%;">
+              <svg class="sticker-illus" width="75" height="55" viewBox="0 0 75 55" fill="none" style="transform: rotate(-10deg);">
+                <path d="M 6 38 L 68 6 L 40 48 Z" fill="#ffe600" stroke="#000000" stroke-width="2.5" stroke-linejoin="round" />
+                <path d="M 68 6 L 40 48 L 30 34 Z" fill="#f59e0b" stroke="#000000" stroke-width="2.5" stroke-linejoin="round" />
+                <path d="M 30 34 L 36 42 L 40 36 Z" fill="#d97706" stroke="#000000" stroke-width="2" />
+              </svg>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height: 100vh; background: #e0f2fe; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800;">
+    Next Section: Featured Work & Projects
+  </div>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const section = document.querySelector("#journey-track");
+      const introTitle = document.querySelector(".journey-intro-title");
+      const skyContainer = document.querySelector(".journey-sky-container");
+      const skyImg = document.querySelector(".journey-sky-img");
+      const stageWrap = document.querySelector(".journey-stage-wrap");
+      const titleBanner = document.querySelector(".journey-title-banner");
+      const roadIndicator = document.querySelector("#road-indicator");
+      const roadPaths = document.querySelectorAll(".road-path");
+      const airplane = document.querySelector("#m9-airplane");
+
+      // Measure SVG path length
+      const roadStripe = document.querySelector("#road-stripe");
+      const totalLen = roadStripe.getTotalLength();
+
+      roadPaths.forEach(p => {
+        p.style.strokeDasharray = totalLen;
+        p.style.strokeDashoffset = totalLen;
+      });
+
+      // Milestone elements with their scroll trigger progression points
+      const milestones = [
+        { el: "#m1-beginning", prog: 0.038 },
+        { el: "#m2-school", prog: 0.103 },
+        { el: "#m3-class12", prog: 0.170 },
+        { el: "#m4-college", prog: 0.269 },
+        { el: "#m6-creator", prog: 0.446 },
+        { el: "#m5-projects", prog: 0.616 },
+        { el: "#m7-startup", prog: 0.788 },
+        { el: "#m8-future", prog: 0.938 }
+      ];
+
+      milestones.forEach(m => {
+        gsap.set(m.el, { autoAlpha: 0, scale: 0.75, y: 35 });
+      });
+      gsap.set(titleBanner, { autoAlpha: 0, scale: 0.7, y: -40, rotate: -10 });
+      gsap.set(airplane, { autoAlpha: 0, scale: 0.6, x: -30, y: 30 });
+
+      // MASTER TIMELINE SYNCHRONIZED TO SCROLL
+      const masterTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.8,
+          pin: true,
+          invalidateOnRefresh: true,
+        }
+      });
+
+      // 1. Initial Cloud Pop-up (time 0 to 1.8)
+      masterTl.fromTo(introTitle, { scale: 1, autoAlpha: 1 }, { scale: 0.6, autoAlpha: 0, duration: 0.8, ease: "power2.in" }, 0);
+      masterTl.fromTo(skyContainer, {
+        clipPath: "inset(12% 50% 12% 50%)",
+        scale: 0.5,
+        yPercent: 80
+      }, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        scale: 1,
+        yPercent: 0,
+        duration: 1.8,
+        ease: "power2.inOut"
+      }, 0);
+
+      masterTl.fromTo(skyImg, {
+        scale: 2.6,
+        yPercent: 30
+      }, {
+        scale: 1,
+        yPercent: 0,
+        duration: 1.8,
+        ease: "power2.inOut"
+      }, 0);
+
+      // 2. Journey Overlay appears (time: 1.8 to 2.4)
+      masterTl.set(stageWrap, { autoAlpha: 1 }, 1.8);
+      masterTl.to(titleBanner, {
+        autoAlpha: 1,
+        scale: 1,
+        y: 0,
+        rotate: -3,
+        duration: 0.6,
+        ease: "back.out(1.5)"
+      }, 1.9);
+
+      // Indicator appears at start
+      masterTl.to(roadIndicator, { autoAlpha: 1, duration: 0.2 }, 2.1);
+
+      // 3. Draw Road + Travel Indicator (time: 2.2 to 8.5)
+      const roadDuration = 6.3;
+      const roadStart = 2.2;
+
+      masterTl.to(roadPaths, {
+        strokeDashoffset: 0,
+        duration: roadDuration,
+        ease: "none"
+      }, roadStart);
+
+      masterTl.to(roadIndicator, {
+        motionPath: {
+          path: "#road-stripe",
+          align: "#road-stripe",
+          alignOrigin: [0.5, 0.5],
+          autoRotate: false
+        },
+        duration: roadDuration,
+        ease: "none"
+      }, roadStart);
+
+      // Reveal milestones as indicator reaches them
+      milestones.forEach(m => {
+        const mTime = roadStart + (roadDuration * m.prog);
+        masterTl.to(m.el, {
+          autoAlpha: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.45,
+          ease: "back.out(1.4)"
+        }, Math.max(roadStart, mTime - 0.08));
+      });
+
+      // 4. Paper Airplane at End
+      masterTl.to(airplane, {
+        autoAlpha: 1,
+        scale: 1,
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "back.out(1.2)"
+      }, 8.5);
+
+      masterTl.to(airplane, {
+        x: 35,
+        y: -30,
+        duration: 0.8,
+        ease: "sine.out"
+      }, 8.9);
+
+      // Final Hold before unpinning and scrolling to next section
+      masterTl.to({}, { duration: 1.0 }, 9.2);
+    });
+  </script>
+</body>
+</html>

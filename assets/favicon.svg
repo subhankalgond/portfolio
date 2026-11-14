@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#0c0c0c" stroke="#2a2a2a" stroke-width="3" />
+  <text x="56" y="88" font-family="'Anton', 'Impact', sans-serif" font-size="66" font-weight="900" fill="#FFF9EF" text-anchor="middle" letter-spacing="-1.5">JM</text>
+  <circle cx="102" cy="80" r="7" fill="#10CD00" />
+</svg>

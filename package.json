@@ -1,0 +1,24 @@
+{
+  "name": "dynamic-portfolio-website",
+  "version": "1.0.0",
+  "description": "Dynamic Full Stack Developer Portfolio & GSAP Interactive Showcase",
+  "main": "dev-server.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js",
+    "serve": "node dev-server.js",
+    "build": "node -e \"console.log('Site ready for deployment in root directory.')\"",
+    "preview": "node dev-server.js --no-open"
+  },
+  "keywords": [
+    "portfolio",
+    "gsap",
+    "full-stack",
+    "developer",
+    "interactive",
+    "webflow",
+    "animation"
+  ],
+  "author": "Subhan Kalgond",
+  "license": "MIT"
+}

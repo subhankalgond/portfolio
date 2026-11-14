@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — Subhan Kalgond</title>
+  <link rel="stylesheet" href="./Gsap X Webflow_files/gsap-webflow-offbrand.webflow.shared.1d2cc8aa4.min.css">
+  <style>
+    :root {
+      --bg: #ffe9cf;
+      --primary: #270f03;
+      --accent: #ffe600;
+      --card-bg: #ffffff;
+      --border: #000000;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+    .resume-card {
+      background: var(--card-bg);
+      border: 3.5px solid var(--border);
+      box-shadow: 8px 8px 0px var(--border);
+      padding: clamp(2rem, 4vw, 3.2rem);
+      max-width: 760px;
+      width: 100%;
+      text-align: left;
+    }
+    .resume-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: 3px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+    .badge {
+      display: inline-block;
+      background: #0d0d0d;
+      color: var(--accent);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border: 2px solid var(--border);
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 0.4rem;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+    .role-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #3b82f6;
+      margin-bottom: 0.6rem;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.2rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-top: 0.5rem;
+    }
+    .contact-links a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .resume-section {
+      margin-bottom: 1.8rem;
+    }
+    .section-heading {
+      display: inline-block;
+      background: var(--accent);
+      color: #000000;
+      font-size: 0.9rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border: 2px solid var(--border);
+      margin-bottom: 0.9rem;
+    }
+    .item-block {
+      margin-bottom: 1.1rem;
+    }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.25rem;
+    }
+    .item-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .item-sub {
+      font-size: 0.92rem;
+      color: #4b5563;
+      font-weight: 600;
+    }
+    .item-date {
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: #f3f4f6;
+      border: 1.5px solid var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+    .item-desc {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #374151;
+      margin-top: 0.3rem;
+    }
+    .item-desc li {
+      margin-left: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .skill-category {
+      background: #fafaf9;
+      border: 2px solid var(--border);
+      padding: 0.75rem 0.9rem;
+      border-radius: 4px;
+    }
+    .skill-cat-title {
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #1f2937;
+      margin-bottom: 0.3rem;
+    }
+    .skill-cat-items {
+      color: #4b5563;
+      line-height: 1.45;
+    }
+    .btn-back-w {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #000000;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 0.8rem 1.8rem;
+      border: 3px solid var(--border);
+      box-shadow: 4px 4px 0px var(--border);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .btn-back:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-card">
+    <div class="resume-header">
+      <div class="badge">Curriculum Vitae</div>
+      <h1>Subhan Kalgond</h1>
+      <div class="role-title">Full Stack Developer & Data Science Enthusiast</div>
+      <div class="contact-links">
+        <span>Email: <a href="mailto:buildwithsubhankalgond@gmail.com">buildwithsubhankalgond@gmail.com</a></span>
+        <span>•</span>
+        <span>GitHub: <a href="https://github.com/subhankalgond" target="_blank" rel="noopener noreferrer">github.com/subhankalgond</a></span>
+        <span>•</span>
+        <span>LinkedIn: <a href="https://www.linkedin.com/in/subhan-kalgond-713a3b33b" target="_blank" rel="noopener noreferrer">linkedin.com/in/subhan-kalgond</a></span>
+        <span>•</span>
+        <span>Portfolio: <a href="https://www.subhankalgond.me/" target="_blank" rel="noopener noreferrer">subhankalgond.me</a></span>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="resume-section">
+      <div class="section-heading">Education</div>
+      <div class="item-block">
+        <div class="item-header">
+          <div>
+            <div class="item-title">B.E. in Data Science</div>
+            <div class="item-sub">Anjuman Institute of Technology and Management, Bhatkal</div>
+          </div>
+          <div class="item-date">Expected 2028</div>
+        </div>
+        <p class="item-desc">Focused on data science, machine learning, algorithms, and practical software engineering.</p>
+      </div>
+    </div>
+
+    <!-- Professional Experience -->
+    <div class="resume-section">
+      <div class="section-heading">Experience</div>
+      <div class="item-block">
+        <div class="item-header">
+          <div>
+            <div class="item-title">Machine Learning Intern</div>
+            <div class="item-sub">My Job Grow</div>
+          </div>
+          <div class="item-date">Feb 2025 – Apr 2026</div>
+        </div>
+        <ul class="item-desc">
+          <li>Worked with machine learning algorithms and practical predictive modeling.</li>
+          <li>Performed comprehensive exploratory data analysis and data preprocessing.</li>
+          <li>Worked with end-to-end model-training workflows and pipeline integration.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Selected Projects -->
+    <div class="resume-section">
+      <div class="section-heading">Selected Projects</div>
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title">CarePulse — Healthcare / Hospital Management</div>
+          <div class="item-date"><a href="https://hospital-management-five-rust.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Live Demo ↗</a></div>
+        </div>
+        <p class="item-desc">A comprehensive hospital management web application focused on managing hospital workflows, patients, appointments, and healthcare operations.</p>
+      </div>
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title">Prahari — AgriTech AI Crop Disease Detection (SIH)</div>
+        </div>
+        <p class="item-desc">AI-powered crop disease and pest risk detection platform utilizing photos, weather data, and growth stages ("Detect Early. Protect Crops. Grow Better.").</p>
+      </div>
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title">FieldNotes — Task Management</div>
+        </div>
+        <p class="item-desc">An editorial task management web application designed to keep ledgers, projects, and tasks organized seamlessly across devices.</p>
+      </div>
+      <div class="item-block">
+        <div class="item-header">
+          <div class="item-title">Nova Threads — E-Commerce</div>
+        </div>
+        <p class="item-desc">A modern e-commerce web application and clothing store interface designed for everyday essentials.</p>
+      </div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="resume-section">
+      <div class="section-heading">Technical Skills</div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <div class="skill-cat-title">Programming Languages</div>
+          <div class="skill-cat-items">Python, Java, SQL, C, JavaScript</div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Web Development</div>
+          <div class="skill-cat-items">HTML, CSS, React, Node.js</div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Databases</div>
+          <div class="skill-cat-items">MongoDB, MySQL, Supabase, PostgreSQL</div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-title">Data Science & Tools</div>
+          <div class="skill-cat-items">Machine Learning, Data Analysis, Git, GitHub, VS Code, Jupyter, Postman</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-back-w">
+      <a href="index.html" class="btn-back">← Back to Portfolio</a>
+    </div>
+  </div>
+</body>
+</html>

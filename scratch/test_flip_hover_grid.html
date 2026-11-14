@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Flip Hover</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    background-color: #ffe9cf;
+    margin: 0;
+    padding: 80px 20px;
+    font-family: 'Work Sans', sans-serif;
+    display: flex;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .flip-list-w {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: min(92%, 48rem);
+    display: flex;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    gap: 3.5rem;
+  }
+  
+  .flip-li {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+  
+  .flip-li:hover {
+    z-index: 50;
+  }
+  
+  .flip-card-container {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Main Image Box */
+  .flip-item {
+    position: relative;
+    z-index: 2;
+    aspect-ratio: 389/193;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+    background-color: #0d0d0d;
+    cursor: pointer;
+    transition: box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  
+  .flip-card-container.is-fully-appeared:hover .flip-item {
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+  
+  .flip-project-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .flip-project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .flip-card-container.is-fully-appeared:hover .flip-project-img {
+    transform: scale(1.025);
+  }
+  
+  /* Upper Right Visit Site Button */
+  .flip-visit-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(18, 18, 22, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 999px;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(0, 0) scale(0.7);
+    transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.28s ease, 
+                visibility 0.28s ease,
+                background 0.2s ease, 
+                color 0.2s ease, 
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+  }
+  
+  .flip-visit-btn svg {
+    transition: transform 0.25s ease;
+  }
+  
+  .flip-card-container.is-fully-appeared:hover .flip-visit-btn,
+  .flip-visit-btn:focus-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(16px, -16px) scale(1);
+  }
+  
+  .flip-visit-btn:hover {
+    background: #10CD00 !important;
+    color: #000000 !important;
+    border-color: #10CD00 !important;
+    transform: translate(16px, -16px) scale(1.06) !important;
+    box-shadow: 0 12px 30px rgba(16, 205, 0, 0.4) !important;
+  }
+  
+  .flip-visit-btn:hover svg {
+    transform: translate(2px, -2px);
+  }
+  
+  /* Lower Left Info Box (Behind Image) */
+  .flip-info-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: min(340px, 86%);
+    background: #141416;
+    border: 1.5px solid rgba(255, 255, 255, 0.16);
+    border-radius: 14px;
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.45);
+    padding: 38px 20px 18px 20px;
+    color: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(0, 0) scale(0.96);
+    transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.32s ease, 
+                visibility 0.32s ease;
+  }
+  
+  .flip-card-container.is-fully-appeared:hover .flip-info-box {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-26px, calc(100% - 28px)) scale(1);
+  }
+  
+  .flip-info-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #10CD00;
+    margin-bottom: 6px;
+  }
+  
+  .flip-info-tag::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10CD00;
+  }
+  
+  .flip-info-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 19px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  
+  .flip-info-desc {
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<ul class="flip-list-w">
+  <li class="flip-li">
+    <div class="flip-card-container is-fully-appeared">
+      <!-- Behind the image -->
+      <div class="flip-info-box">
+        <div class="flip-info-tag">Project 01</div>
+        <div class="flip-info-title">Personal Portfolio</div>
+        <div class="flip-info-desc">A personal portfolio crafted to showcase skills, projects, and creative work — built for speed, smooth animations, and a bold first impression.</div>
+      </div>
+      
+      <!-- Main image -->
+      <div class="flip-item">
+        <div class="flip-project-frame">
+          <img src="./Project Images/Portfolio Website.png" alt="Portfolio Website" class="flip-project-img">
+        </div>
+      </div>
+      
+      <!-- Upper right pop out -->
+      <a href="https://jishnumondal.vercel.app/" target="_blank" class="flip-visit-btn">
+        <span>Visit Site</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </a>
+    </div>
+  </li>
+
+  <li class="flip-li">
+    <div class="flip-card-container is-fully-appeared">
+      <div class="flip-info-box">
+        <div class="flip-info-tag">Project 02</div>
+        <div class="flip-info-title">Cafe Management</div>
+        <div class="flip-info-desc">A full-stack cafe management system with an admin portal for orders, menu, and reservations — built for seamless day-to-day cafe operations.</div>
+      </div>
+      <div class="flip-item">
+        <div class="flip-project-frame">
+          <img src="./Project Images/Cafe Website.png" alt="Cafe Website" class="flip-project-img">
+        </div>
+      </div>
+      <a href="https://mochaandmiso.web.app/" target="_blank" class="flip-visit-btn">
+        <span>Visit Site</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </a>
+    </div>
+  </li>
+</ul>
+
+</body>
+</html>
