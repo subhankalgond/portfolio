@@ -7,7 +7,6 @@
     "dev": "node dev-server.js",
     "start": "node dev-server.js",
     "serve": "node dev-server.js",
-    "build": "node -e \"console.log('Site ready for deployment in root directory.')\"",
     "preview": "node dev-server.js --no-open"
   },
   "keywords": [
