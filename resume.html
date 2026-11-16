@@ -12,6 +12,7 @@
       --accent: #ffe600;
       --card-bg: #ffffff;
       --border: #000000;
+      --blue: #3d77ff;
     }
     * {
       box-sizing: border-box;
@@ -34,17 +35,17 @@
       border: 3.5px solid var(--border);
       box-shadow: 8px 8px 0px var(--border);
       padding: clamp(2rem, 4vw, 3.2rem);
-      max-width: 760px;
+      max-width: 820px;
       width: 100%;
       text-align: left;
     }
-    .resume-header {
+    .top-actions-bar {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      border-bottom: 3px solid var(--border);
-      padding-bottom: 1.5rem;
-      margin-bottom: 1.8rem;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
     }
     .badge {
       display: inline-block;
@@ -55,8 +56,37 @@
       text-transform: uppercase;
       padding: 0.35rem 1rem;
       border: 2px solid var(--border);
-      margin-bottom: 1rem;
       font-size: 0.85rem;
+    }
+    .btn-pdf-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.5rem 1.2rem;
+      border: 2px solid var(--border);
+      box-shadow: 3px 3px 0px var(--border);
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .btn-pdf-header:hover {
+      background: #2563eb;
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px var(--border);
+    }
+    .resume-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: 3px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
     }
     h1 {
       font-size: clamp(2.2rem, 5vw, 3.2rem);
@@ -70,16 +100,17 @@
     .role-title {
       font-size: 1.15rem;
       font-weight: 700;
-      color: #3b82f6;
+      color: var(--blue);
       margin-bottom: 0.6rem;
     }
     .contact-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem 1.2rem;
+      gap: 0.5rem 0.9rem;
       font-size: 0.9rem;
       color: #4b5563;
       margin-top: 0.5rem;
+      line-height: 1.5;
     }
     .contact-links a {
       color: var(--primary);
@@ -101,8 +132,13 @@
       border: 2px solid var(--border);
       margin-bottom: 0.9rem;
     }
+    .summary-text {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: #374151;
+    }
     .item-block {
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.3rem;
     }
     .item-header {
       display: flex;
@@ -129,6 +165,13 @@
       border: 1.5px solid var(--border);
       padding: 0.15rem 0.5rem;
       border-radius: 4px;
+      white-space: nowrap;
+    }
+    .item-tech {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 0.35rem;
     }
     .item-desc {
       font-size: 0.92rem;
@@ -137,37 +180,60 @@
       margin-top: 0.3rem;
     }
     .item-desc li {
-      margin-left: 1.2rem;
-      margin-bottom: 0.2rem;
+      margin-left: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    .item-links {
+      margin-top: 0.35rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+    .item-links a {
+      color: var(--blue);
+      text-decoration: underline;
     }
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
       font-size: 0.9rem;
     }
     .skill-category {
       background: #fafaf9;
       border: 2px solid var(--border);
-      padding: 0.75rem 0.9rem;
+      padding: 0.85rem 1rem;
       border-radius: 4px;
     }
     .skill-cat-title {
       font-weight: 800;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: #1f2937;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.35rem;
     }
     .skill-cat-items {
       color: #4b5563;
-      line-height: 1.45;
+      line-height: 1.5;
     }
-    .btn-back-w {
+    .achievements-list {
+      list-style-type: square;
+      margin-left: 1.25rem;
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: #374151;
+    }
+    .achievements-list li {
+      margin-bottom: 0.4rem;
+    }
+    .btn-actions-footer {
       margin-top: 2rem;
       display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
       justify-content: flex-start;
+      border-top: 2px solid #e5e7eb;
+      padding-top: 1.5rem;
     }
     .btn-back {
       display: inline-flex;
@@ -177,7 +243,7 @@
       color: #000000;
       font-weight: 800;
       text-decoration: none;
-      padding: 0.8rem 1.8rem;
+      padding: 0.75rem 1.6rem;
       border: 3px solid var(--border);
       box-shadow: 4px 4px 0px var(--border);
       transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -188,38 +254,62 @@
       transform: translate(-2px, -2px);
       box-shadow: 6px 6px 0px var(--border);
     }
+    .btn-pdf-footer {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--blue);
+      color: #ffffff;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 0.75rem 1.6rem;
+      border: 3px solid var(--border);
+      box-shadow: 4px 4px 0px var(--border);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .btn-pdf-footer:hover {
+      background: #2563eb;
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--border);
+    }
   </style>
 </head>
 <body>
   <div class="resume-card">
-    <div class="resume-header">
+    <div class="top-actions-bar">
       <div class="badge">Curriculum Vitae</div>
+      <a href="./Subhan_Kalgond_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-header" aria-label="Open PDF Resume in new tab">
+        <span>📄 Open Official PDF ↗</span>
+      </a>
+    </div>
+
+    <div class="resume-header">
       <h1>Subhan Kalgond</h1>
-      <div class="role-title">Full Stack Developer & Data Science Enthusiast</div>
+      <div class="role-title">Full Stack Developer</div>
       <div class="contact-links">
-        <span>Email: <a href="mailto:buildwithsubhankalgond@gmail.com">buildwithsubhankalgond@gmail.com</a></span>
+        <span>📍 Bhatkal, Karnataka, India</span>
         <span>•</span>
-        <span>GitHub: <a href="https://github.com/subhankalgond" target="_blank" rel="noopener noreferrer">github.com/subhankalgond</a></span>
+        <span>📞 <a href="tel:9008600215">9008600215</a></span>
         <span>•</span>
-        <span>LinkedIn: <a href="https://www.linkedin.com/in/subhan-kalgond-713a3b33b" target="_blank" rel="noopener noreferrer">linkedin.com/in/subhan-kalgond</a></span>
+        <span>✉️ <a href="mailto:buildwithsubhankalgond@gmail.com">buildwithsubhankalgond@gmail.com</a></span>
+      </div>
+      <div class="contact-links" style="margin-top: 0.35rem;">
+        <span>🔗 <a href="https://www.linkedin.com/in/subhan-kalgond-713a3b33b" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
         <span>•</span>
-        <span>Portfolio: <a href="https://www.subhankalgond.me/" target="_blank" rel="noopener noreferrer">subhankalgond.me</a></span>
+        <span>💻 <a href="https://github.com/subhankalgond" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+        <span>•</span>
+        <span>🌐 <a href="https://www.subhankalgond.me/" target="_blank" rel="noopener noreferrer">Portfolio</a></span>
       </div>
     </div>
 
-    <!-- Education -->
+    <!-- Summary -->
     <div class="resume-section">
-      <div class="section-heading">Education</div>
-      <div class="item-block">
-        <div class="item-header">
-          <div>
-            <div class="item-title">B.E. in Data Science</div>
-            <div class="item-sub">Anjuman Institute of Technology and Management, Bhatkal</div>
-          </div>
-          <div class="item-date">Expected 2028</div>
-        </div>
-        <p class="item-desc">Focused on data science, machine learning, algorithms, and practical software engineering.</p>
-      </div>
+      <div class="section-heading">Summary</div>
+      <p class="summary-text">
+        B.Tech student in Data Science at Anjuman Institute of Technology and Management (AITM), with an interest in full-stack application development, data analysis, and practical software solutions. Completed a Machine Learning Internship at My Job Grow, gaining exposure to machine-learning algorithms, data analysis, and company workflows. Builds projects across web development, hospital management, and AI-assisted monitoring, with a focus on learning by implementing real applications.
+      </p>
     </div>
 
     <!-- Professional Experience -->
@@ -231,43 +321,72 @@
             <div class="item-title">Machine Learning Intern</div>
             <div class="item-sub">My Job Grow</div>
           </div>
-          <div class="item-date">Feb 2025 – Apr 2026</div>
+          <div class="item-date">February 2025 – April 2026</div>
         </div>
         <ul class="item-desc">
-          <li>Worked with machine learning algorithms and practical predictive modeling.</li>
-          <li>Performed comprehensive exploratory data analysis and data preprocessing.</li>
-          <li>Worked with end-to-end model-training workflows and pipeline integration.</li>
+          <li>Completed internship training focused on company processes, tools, and working methodologies.</li>
+          <li>Gained practical exposure to machine-learning algorithms and data analysis.</li>
+          <li>Developed familiarity with applying technical concepts to practical tasks and understanding structured team workflows.</li>
         </ul>
       </div>
     </div>
 
-    <!-- Selected Projects -->
+    <!-- Projects -->
     <div class="resume-section">
-      <div class="section-heading">Selected Projects</div>
+      <div class="section-heading">Projects</div>
+
+      <!-- CarePulse -->
       <div class="item-block">
         <div class="item-header">
-          <div class="item-title">CarePulse — Healthcare / Hospital Management</div>
-          <div class="item-date"><a href="https://hospital-management-five-rust.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Live Demo ↗</a></div>
+          <div class="item-title">CarePulse | Hospital Management System</div>
+          <div class="item-date">
+            <a href="https://hospital-management-five-rust.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Live Demo ↗</a>
+          </div>
         </div>
-        <p class="item-desc">A comprehensive hospital management web application focused on managing hospital workflows, patients, appointments, and healthcare operations.</p>
+        <div class="item-tech">Technologies: React, Next.js, TypeScript, Tailwind CSS, Supabase, PostgreSQL</div>
+        <ul class="item-desc">
+          <li>Built a web-based hospital management project focused on organizing patient, appointment, and healthcare workflows.</li>
+          <li>Project repository: hospital-management.</li>
+        </ul>
+        <div class="item-links">
+          GitHub: <a href="https://github.com/subhankalgond/hospital-management" target="_blank" rel="noopener noreferrer">subhankalgond/hospital-management</a>
+        </div>
       </div>
+
+      <!-- Prahari -->
       <div class="item-block">
         <div class="item-header">
-          <div class="item-title">Prahari — AgriTech AI Crop Disease Detection (SIH)</div>
+          <div class="item-title">Prahari | AI-Assisted Crop-Health Monitoring</div>
+          <div class="item-date">
+            <a href="https://prahari-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Live Demo ↗</a>
+          </div>
         </div>
-        <p class="item-desc">AI-powered crop disease and pest risk detection platform utilizing photos, weather data, and growth stages ("Detect Early. Protect Crops. Grow Better.").</p>
+        <div class="item-tech">Technologies: React, TypeScript, Vite, Tailwind CSS, Node.js, Express, PostgreSQL, Prisma</div>
+        <ul class="item-desc">
+          <li>Developed a project exploring AI-assisted crop-health monitoring and agricultural information for users.</li>
+          <li>Project repository: prahari.</li>
+        </ul>
+        <div class="item-links">
+          GitHub: <a href="https://github.com/subhankalgond/prahari" target="_blank" rel="noopener noreferrer">subhankalgond/prahari</a>
+        </div>
       </div>
+
+      <!-- Nova Thread -->
       <div class="item-block">
         <div class="item-header">
-          <div class="item-title">FieldNotes — Task Management</div>
+          <div class="item-title">Nova Thread | E-commerce Website</div>
+          <div class="item-date">
+            <a href="https://ecommerce-six-iota-18.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Live Demo ↗</a>
+          </div>
         </div>
-        <p class="item-desc">An editorial task management web application designed to keep ledgers, projects, and tasks organized seamlessly across devices.</p>
-      </div>
-      <div class="item-block">
-        <div class="item-header">
-          <div class="item-title">Nova Threads — E-Commerce</div>
+        <div class="item-tech">Technologies: Next.js, Tailwind CSS</div>
+        <ul class="item-desc">
+          <li>Developed an e-commerce storefront project for browsing products and managing shopping workflows.</li>
+          <li>Project repository: ecommerce.</li>
+        </ul>
+        <div class="item-links">
+          GitHub: <a href="https://github.com/subhankalgond/ecommerce" target="_blank" rel="noopener noreferrer">subhankalgond/ecommerce</a>
         </div>
-        <p class="item-desc">A modern e-commerce web application and clothing store interface designed for everyday essentials.</p>
       </div>
     </div>
 
@@ -276,26 +395,51 @@
       <div class="section-heading">Technical Skills</div>
       <div class="skills-grid">
         <div class="skill-category">
-          <div class="skill-cat-title">Programming Languages</div>
-          <div class="skill-cat-items">Python, Java, SQL, C, JavaScript</div>
+          <div class="skill-cat-title">Programming</div>
+          <div class="skill-cat-items">Python, Java, SQL, JavaScript, TypeScript</div>
         </div>
         <div class="skill-category">
           <div class="skill-cat-title">Web Development</div>
-          <div class="skill-cat-items">HTML, CSS, React, Node.js</div>
+          <div class="skill-cat-items">HTML, CSS, React, Node.js, Next.js</div>
         </div>
         <div class="skill-category">
-          <div class="skill-cat-title">Databases</div>
-          <div class="skill-cat-items">MongoDB, MySQL, Supabase, PostgreSQL</div>
+          <div class="skill-cat-title">Data Analysis</div>
+          <div class="skill-cat-items">Pandas, NumPy, Jupyter Notebook</div>
         </div>
         <div class="skill-category">
-          <div class="skill-cat-title">Data Science & Tools</div>
-          <div class="skill-cat-items">Machine Learning, Data Analysis, Git, GitHub, VS Code, Jupyter, Postman</div>
+          <div class="skill-cat-title">Databases & Tools</div>
+          <div class="skill-cat-items">PostgreSQL, MySQL, MongoDB, Supabase, Git, GitHub, Postman</div>
         </div>
       </div>
     </div>
 
-    <div class="btn-back-w">
+    <!-- Education -->
+    <div class="resume-section">
+      <div class="section-heading">Education</div>
+      <div class="item-block">
+        <div class="item-header">
+          <div>
+            <div class="item-title">B.E. in Data Science</div>
+            <div class="item-sub">Anjuman Institute of Technology and Management (AITM), Bhatkal</div>
+          </div>
+          <div class="item-date">Expected 2028</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Achievements & Activities -->
+    <div class="resume-section">
+      <div class="section-heading">Achievements & Activities</div>
+      <ul class="achievements-list">
+        <li><strong>HackPrix, Hyderabad</strong> | Participated as a team member.</li>
+        <li><strong>Smart India Hackathon (SIH)</strong> | Participated in the internal college selection round.</li>
+      </ul>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="btn-actions-footer">
       <a href="index.html" class="btn-back">← Back to Portfolio</a>
+      <a href="./Subhan_Kalgond_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-pdf-footer">📄 Open Official PDF ↗</a>
     </div>
   </div>
 </body>
