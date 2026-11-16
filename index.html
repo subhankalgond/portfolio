@@ -1346,24 +1346,14 @@
   <style id="mobile-responsive-fixes">
 
     /* ------------------------------------------------------------------
-       0. GLOBAL: Prevent horizontal scroll on ALL screen sizes
-    ------------------------------------------------------------------ */
-    html, body {
-      overflow-x: hidden !important;
-    }
-    .scroll-wrapper, .main {
-      overflow-x: hidden !important;
-    }
-
-    /* ------------------------------------------------------------------
        1. TABLET + PHONE (≤ 767px)
     ------------------------------------------------------------------ */
     @media screen and (max-width: 767px) {
 
-      /* Global overflow guard */
-      * {
-        max-width: 100% !important;
-        box-sizing: border-box !important;
+      /* Global overflow guard — only on the wrapper, NOT on html/body
+         (breaks Lenis/GSAP smooth scroll if set globally) */
+      .scroll-wrapper, .main {
+        overflow-x: hidden !important;
       }
 
       /* ---- NAV ---- */
@@ -1537,24 +1527,11 @@
       }
 
       /* ---- SERVICES SECTION ---- */
+      /* Services: keep sticky scroll animation intact, just ensure no overflow */
       .services-track-sec {
-        height: auto !important;
-        min-height: 100vh !important;
-      }
-      .services-sticky-viewport {
-        position: relative !important;
-        height: auto !important;
-        min-height: 100vh !important;
-        overflow: visible !important;
-        padding: 2rem 0 !important;
-      }
-      .services-content-overlay {
-        position: relative !important;
-        inset: auto !important;
-        padding: 1rem !important;
+        overflow-x: hidden !important;
       }
       .services-inner-wrap {
-        max-width: 100% !important;
         padding: 0 1rem !important;
       }
       .services-header-box {
@@ -1568,9 +1545,6 @@
       }
       .services-title-card {
         padding: 6px 24px !important;
-      }
-      .services-bg-frame {
-        position: absolute !important;
       }
 
       /* ---- CONTACT SECTION ---- */
