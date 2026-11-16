@@ -89,7 +89,7 @@
     name="twitter:image">
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
-  <meta content="width=1200, initial-scale=1" name="viewport">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
   <link href="./Gsap X Webflow_files/gsap-webflow-offbrand.webflow.shared.1d2cc8aa4.min.css" rel="stylesheet"
     type="text/css">
@@ -1337,6 +1337,573 @@
     }
   </style>
 
+
+  <!-- ============================================================
+       MOBILE RESPONSIVENESS (PHONES & TABLETS: ≤ 768px, ≤ 380px)
+       ALL rules are strictly inside media queries.
+       Desktop layout (≥ 769px) is 100% UNTOUCHED and PRESERVED.
+       ============================================================ -->
+  <style id="mobile-responsive-styles">
+    /* ------------------------------------------------------------------
+       1. GLOBAL MOBILE RESETS & OVERFLOW CONTAINMENT (≤ 768px)
+    ------------------------------------------------------------------ */
+    @media screen and (max-width: 768px) {
+      /* Prevent horizontal scrolling without breaking Lenis */
+      #smooth-wrapper,
+      #smooth-content,
+      .scroll-wrapper,
+      .main,
+      .sec {
+        overflow-x: clip !important;
+        max-width: 100vw !important;
+      }
+
+      /* Base sizing safety */
+      img, video, svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* ------------------------------------------------------------------
+         2. TOP BRAND NAV & SITE SWITCHER PILL (≤ 768px)
+      ------------------------------------------------------------------ */
+      .nav-w .nav {
+        padding-top: 0.65rem !important;
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+      }
+      .logo-banner-w a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+        text-align: center !important;
+      }
+      .logo-banner-w span:first-of-type {
+        font-size: clamp(16px, 4.8vw, 20px) !important;
+        letter-spacing: 0.03em !important;
+      }
+      .logo-banner-w span:last-of-type {
+        font-size: 8.5px !important;
+        padding: 2px 7px !important;
+        letter-spacing: 0.04em !important;
+        white-space: nowrap !important;
+      }
+
+      /* Pill Sub-Navigation */
+      .overflow-w {
+        top: -6px !important;
+        width: calc(100% - 24px) !important;
+        max-width: 360px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+      }
+      .sub-nav-bg {
+        padding: 0.3rem 0.35rem !important;
+        width: 100% !important;
+        justify-content: space-around !important;
+        border-radius: 9999px !important;
+      }
+      .sub-nav-w {
+        width: 100% !important;
+        justify-content: space-around !important;
+        gap: 0 !important;
+      }
+      .sub-nav-w .link-li-w {
+        font-size: 11.5px !important;
+        padding: 0.35rem 0.5rem !important;
+        white-space: nowrap !important;
+      }
+
+      /* Top-Right Site Switcher Banner */
+      .site-switcher-banner {
+        top: 8px !important;
+        right: 8px !important;
+        font-size: 10.5px !important;
+        padding: 4px 9px !important;
+        gap: 5px !important;
+        max-width: calc(100vw - 16px) !important;
+      }
+
+      /* ------------------------------------------------------------------
+         3. HERO SECTION (≤ 768px)
+      ------------------------------------------------------------------ */
+      .sec.hero {
+        min-height: 100svh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 5rem 1rem 2rem !important;
+      }
+      [data-hero="title"].hero-text,
+      .font-c.hero-text {
+        font-size: clamp(2.4rem, 12vw, 4.4rem) !important;
+        line-height: 0.95 !important;
+        letter-spacing: 0.02em !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        margin: 0 0 1rem 0 !important;
+      }
+      .hero-text .main-he-span {
+        display: block !important;
+      }
+      .comp.toggle-w {
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0.5rem auto !important;
+      }
+      .scribbles-svg {
+        max-width: 90vw !important;
+        height: auto !important;
+        overflow: hidden !important;
+      }
+      .kinetic-row {
+        margin-top: -1.8vw !important;
+      }
+      .kinetic-row-0, .kinetic-row-1, .kinetic-row-2,
+      .kinetic-row-3, .kinetic-row-4, .kinetic-row-5, .kinetic-row-6 {
+        font-size: clamp(2.2rem, 7.5vw, 4.2rem) !important;
+      }
+
+      /* ------------------------------------------------------------------
+         4. FLOWER / ABOUT SECTION (≤ 768px)
+      ------------------------------------------------------------------ */
+      .flower-anim-track {
+        height: 300vh !important;
+      }
+      .flower-stage {
+        width: min(72vmin, 320px) !important;
+        height: min(72vmin, 320px) !important;
+      }
+      .flower-about-heading {
+        font-size: clamp(2.4rem, 8.5vw, 4.2rem) !important;
+        text-shadow: 0 6px 24px rgba(0,0,0,0.45) !important;
+        letter-spacing: -0.02em !important;
+      }
+      .flower-bg-typography {
+        padding: 0 2.5vw !important;
+      }
+      .flower-bg-word {
+        font-size: clamp(1.3rem, 4.8vw, 2.2rem) !important;
+      }
+      .flower-card {
+        border-width: 2.5px !important;
+        box-shadow: 4px 4px 0px #000000 !important;
+        padding: 0.25em 0.55em !important;
+      }
+      .flower-card-noir {
+        top: 15% !important;
+        left: 4% !important;
+        font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+      }
+      .flower-card-studio {
+        top: 32% !important;
+        left: 18% !important;
+        font-size: clamp(1.1rem, 3.8vw, 1.6rem) !important;
+      }
+      .flower-card-26,
+      .flower-card-06 {
+        top: 18% !important;
+        right: 4% !important;
+        font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+      }
+      .flower-card-20 {
+        top: 60% !important;
+        left: 26% !important;
+        font-size: clamp(1.2rem, 4vw, 1.8rem) !important;
+      }
+
+      /* ------------------------------------------------------------------
+         5. SELECTED PROJECTS (#flip) (≤ 768px)
+      ------------------------------------------------------------------ */
+      #flip {
+        overflow: hidden !important;
+        padding: 3rem 0 !important;
+      }
+      #flip .flip-list-w {
+        width: calc(100% - 24px) !important;
+        max-width: 100% !important;
+        grid-row-gap: 3.5rem !important;
+        margin: 0 auto !important;
+      }
+      #flip .flip-card-container {
+        overflow: visible !important;
+      }
+      #flip .flip-item {
+        border-radius: 12px !important;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25) !important;
+      }
+      /* VISIT SITE button always visible and tappable on touch */
+      #flip .flip-visit-btn {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        position: static !important;
+        transform: none !important;
+        display: inline-flex !important;
+        margin-top: 0.85rem !important;
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 11px 20px !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.05em !important;
+        border-radius: 999px !important;
+        border: 2px solid #270f03 !important;
+        box-shadow: 0 6px 18px rgba(61, 119, 255, 0.35) !important;
+        top: auto !important;
+        right: auto !important;
+      }
+      #flip .flip-card-container:hover .flip-visit-btn {
+        transform: none !important;
+      }
+      #flip .flip-visit-btn:active {
+        transform: scale(0.98) !important;
+      }
+      #flip .flip-project-title {
+        font-size: clamp(1.25rem, 5.5vw, 1.65rem) !important;
+      }
+      #flip .flip-project-desc {
+        font-size: 0.88rem !important;
+        line-height: 1.48 !important;
+      }
+      #flip .flip-project-tags {
+        gap: 0.35rem !important;
+      }
+      #flip .flip-tag {
+        font-size: 0.68rem !important;
+        padding: 2.5px 8px !important;
+      }
+
+      /* ------------------------------------------------------------------
+         6. MY JOURNEY ROADMAP (#scrolltrigger) (≤ 768px)
+      ------------------------------------------------------------------ */
+      .scrolltrigger-sec {
+        height: 700svh !important;
+      }
+      .journey-stage-inner {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+      }
+      .journey-title-banner {
+        top: 14px !important;
+        left: 12px !important;
+        padding: 4px 14px !important;
+        transform: rotate(-3deg) !important;
+      }
+      .journey-title-banner .title-my {
+        font-size: clamp(16px, 4.5vw, 22px) !important;
+      }
+      .journey-title-banner .title-journey {
+        font-size: clamp(24px, 7vw, 36px) !important;
+      }
+
+      /* Responsive Milestones: Alternating Left & Right vertically spaced */
+      .j-milestone {
+        max-width: min(78vw, 260px) !important;
+      }
+      .j-milestone > div {
+        max-width: 100% !important;
+      }
+      .j-milestone .sticker-illus {
+        width: clamp(52px, 15vw, 75px) !important;
+        height: auto !important;
+      }
+      .j-milestone .j-card {
+        border-width: 2.5px !important;
+        box-shadow: 3px 3px 0px #000000 !important;
+        border-radius: 10px !important;
+        padding: 0.4rem 0.65rem !important;
+        font-size: clamp(10.5px, 2.8vw, 12.5px) !important;
+        line-height: 1.35 !important;
+      }
+      .j-milestone .j-badge-yellow,
+      .j-milestone .j-badge-pink,
+      .j-milestone .j-badge-white {
+        font-size: 9.5px !important;
+        padding: 2px 7px !important;
+      }
+      .j-milestone .j-list {
+        font-size: 10px !important;
+        gap: 2px !important;
+      }
+
+      /* Vertical Alternating Coordinates (Zero Collisions) */
+      #m1-beginning { left: 4% !important; top: 82% !important; right: auto !important; }
+      #m2-school    { right: 4% !important; top: 73% !important; left: auto !important; }
+      #m3-class12   { left: 4% !important; top: 64% !important; right: auto !important; }
+      #m4-college   { right: 4% !important; top: 54% !important; left: auto !important; }
+      #m5-projects  { left: 4% !important; top: 44% !important; right: auto !important; }
+      #m6-creator   { right: 4% !important; top: 34% !important; left: auto !important; }
+      #m7-startup   { left: 4% !important; top: 24% !important; right: auto !important; }
+      #m8-future    { right: 4% !important; top: 14% !important; left: auto !important; }
+      #m9-airplane  { right: 8% !important; top: 4% !important; left: auto !important; }
+
+      /* ------------------------------------------------------------------
+         7. SERVICES SECTION (#services) (≤ 768px)
+      ------------------------------------------------------------------ */
+      .services-track-sec {
+        height: 320vh !important;
+        overflow: hidden !important;
+      }
+      .services-content-overlay {
+        padding: 1rem 0.75rem !important;
+      }
+      .services-inner-wrap {
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .services-header-box {
+        margin-bottom: 0.85rem !important;
+      }
+      .services-title-card {
+        padding: 5px 22px !important;
+        border-radius: 14px !important;
+        border-width: 2.5px !important;
+        box-shadow: 4px 4px 0px #080808 !important;
+      }
+      .services-title-card h2 {
+        font-size: clamp(24px, 6.8vw, 36px) !important;
+        gap: 8px !important;
+      }
+      .my-badge {
+        padding: 2px 14px !important;
+        border-radius: 8px !important;
+        border-width: 2.5px !important;
+        box-shadow: 3px 3px 0px #080808 !important;
+      }
+      .my-badge span {
+        font-size: clamp(16px, 4.2vw, 24px) !important;
+      }
+      .services-sub-banner {
+        padding: 3px 14px !important;
+        border-width: 2px !important;
+        box-shadow: 3px 3px 0px #080808 !important;
+      }
+      .services-sub-banner span {
+        font-size: 10.5px !important;
+      }
+      .header-ill-left, .header-ill-right {
+        display: none !important;
+      }
+      .title-accent-left, .title-accent-right {
+        display: none !important;
+      }
+
+      /* Stack service cards in a single column that fits within mobile viewport */
+      .services-cards-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .services-row-top,
+      .services-row-bottom {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .services-row-bottom .service-card {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .service-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        padding: 8px 12px !important;
+        gap: 12px !important;
+        border-radius: 12px !important;
+        border-width: 2.5px !important;
+        box-shadow: 4px 4px 0px #080808 !important;
+      }
+      .service-icon-box {
+        width: 44px !important;
+        height: 44px !important;
+        flex-shrink: 0 !important;
+      }
+      .service-icon-box svg {
+        width: 100% !important;
+        height: 100% !important;
+      }
+      .service-title-pill {
+        font-size: 12.5px !important;
+        padding: 2px 8px !important;
+        display: inline-block !important;
+      }
+      .service-desc {
+        font-size: 11px !important;
+        line-height: 1.35 !important;
+        margin: 3px 0 0 0 !important;
+        color: #3b2c22 !important;
+      }
+
+      /* ------------------------------------------------------------------
+         8. CONTACT SECTION (#contact) (≤ 768px)
+      ------------------------------------------------------------------ */
+      #contact {
+        padding: 3rem 1rem 2.5rem !important;
+        overflow: hidden !important;
+      }
+      .contact-grid-container {
+        grid-template-columns: 1fr !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        gap: 32px !important;
+        padding: 0 !important;
+      }
+      .contact-col-left,
+      .contact-col-center,
+      .contact-col-right {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+      }
+      .social-neo-card {
+        display: block !important;
+        width: 100% !important;
+        text-decoration: none !important;
+      }
+      .social-card-inner {
+        width: 100% !important;
+        padding: 10px 14px !important;
+      }
+      .cloud-watch-card {
+        padding: 1rem 0.5rem !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .cartoon-face-wrap {
+        width: 100% !important;
+        max-width: 260px !important;
+        height: 145px !important;
+        margin: 0 auto !important;
+      }
+      #cloud-watch-contact-form input,
+      #cloud-watch-contact-form textarea {
+        width: 100% !important;
+        font-size: 16px !important; /* Prevents auto-zoom in iOS */
+        box-sizing: border-box !important;
+      }
+      .collab-panel-wrap,
+      .project-banner-wrap,
+      .connect-banner-wrap {
+        transform: none !important;
+        width: 100% !important;
+      }
+      .retro-computer-wrap {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+      }
+      .retro-computer-wrap svg {
+        max-width: 190px !important;
+        height: auto !important;
+      }
+
+      /* Scaled decorations */
+      .decor-airplane {
+        display: none !important;
+      }
+      .decor-cloud-left {
+        display: none !important;
+      }
+      .decor-daisy {
+        bottom: 5px !important;
+        left: 5px !important;
+        transform: scale(0.6) rotate(-8deg) !important;
+        transform-origin: bottom left !important;
+      }
+      .decor-cloud-right {
+        bottom: 5px !important;
+        right: 5px !important;
+        transform: scale(0.6) !important;
+        transform-origin: bottom right !important;
+      }
+
+      /* ------------------------------------------------------------------
+         9. MARQUEE & FOOTER (≤ 768px)
+      ------------------------------------------------------------------ */
+      #marquee {
+        overflow: hidden !important;
+        max-width: 100vw !important;
+      }
+      .comp.scroller {
+        font-size: clamp(3rem, 14vw, 5.5rem) !important;
+        max-width: 100vw !important;
+        overflow: hidden !important;
+      }
+      .scroller-text {
+        font-size: clamp(3rem, 14vw, 5.5rem) !important;
+      }
+
+      footer.sec.footer {
+        overflow: hidden !important;
+        max-width: 100vw !important;
+        padding: 2.5rem 1rem 1.5rem !important;
+      }
+      .footer-tagline-w p {
+        font-size: 13.5px !important;
+        line-height: 1.4 !important;
+      }
+      div[data-animate='footerlogo'] {
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 1rem 0 !important;
+      }
+      div[data-animate='footerlogo'] svg {
+        width: 100% !important;
+        height: auto !important;
+      }
+    }
+
+    /* ------------------------------------------------------------------
+       10. ULTRA-SMALL MOBILE DEVICES (≤ 380px)
+    ------------------------------------------------------------------ */
+    @media screen and (max-width: 380px) {
+      .logo-banner-w span:last-of-type {
+        display: none !important;
+      }
+      [data-hero="title"].hero-text,
+      .font-c.hero-text {
+        font-size: clamp(2.1rem, 11vw, 2.9rem) !important;
+      }
+      .flower-stage {
+        width: min(70vmin, 260px) !important;
+        height: min(70vmin, 260px) !important;
+      }
+      .services-title-card h2 {
+        font-size: 22px !important;
+      }
+      .service-card {
+        padding: 6px 10px !important;
+        gap: 8px !important;
+      }
+      .service-icon-box {
+        width: 38px !important;
+        height: 38px !important;
+      }
+      .service-title-pill {
+        font-size: 11.5px !important;
+      }
+      .service-desc {
+        font-size: 10px !important;
+      }
+      .j-milestone {
+        max-width: min(80vw, 230px) !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body style="">
@@ -1938,6 +2505,10 @@
               if (isKineticActive) return;
               if (scribble.length) animateScribble(scribble);
             };
+            toggle.addEventListener("touchstart", () => {
+              if (isKineticActive) return;
+              if (scribble.length) animateScribble(scribble);
+            }, { passive: true });
           }
         });
       }
@@ -2160,8 +2731,12 @@
         flowerTl.to(".flower-art-wrapper", { scale: 1.35, ease: "power1.inOut", duration: 0.50 }, 0);
 
         // "About Me" Heading: emerges from behind the upper side of the flower, moves to left, then exits upward
-        flowerTl.to(".flower-about-heading", { x: -330, y: -170, autoAlpha: 1, scale: 1, duration: 0.18, ease: "power2.out" }, 0.02);
-        flowerTl.to(".flower-about-heading", { y: -540, autoAlpha: 0, duration: 0.16, ease: "power2.in" }, 0.22);
+        const isMobileFlower = window.innerWidth <= 768;
+        const headingX = isMobileFlower ? 0 : -330;
+        const headingY = isMobileFlower ? -130 : -170;
+        const headingExitY = isMobileFlower ? -360 : -540;
+        flowerTl.to(".flower-about-heading", { x: headingX, y: headingY, autoAlpha: 1, scale: isMobileFlower ? 0.95 : 1, duration: 0.18, ease: "power2.out" }, 0.02);
+        flowerTl.to(".flower-about-heading", { y: headingExitY, autoAlpha: 0, duration: 0.16, ease: "power2.in" }, 0.22);
 
         // Behind-the-Flower Typography: starts invisible, reveals only after user scrolls
         flowerTl.to(".flower-bg-col-left", { autoAlpha: 1, duration: 0.14, ease: "power1.out" }, 0.10);
@@ -2461,8 +3036,8 @@
                   item,
                   {
                     clipPath: "inset(10% 50% 10% 50%)",
-                    xPercent: direction * 105,
-                    scale: 0.5,
+                    xPercent: (window.innerWidth <= 768 ? direction * 22 : direction * 105),
+                    scale: (window.innerWidth <= 768 ? 0.78 : 0.5),
                   },
                   {
                     clipPath: "inset(0% 0% 0% 0%)",
