@@ -2,7 +2,13 @@
   "cleanUrls": true,
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/resume", "destination": "/resume.html" },
-    { "source": "/original", "destination": "/original.html" }
+    {
+      "source": "/resume",
+      "destination": "/resume.html"
+    },
+    {
+      "source": "/original",
+      "destination": "/original.html"
+    }
   ]
 }
