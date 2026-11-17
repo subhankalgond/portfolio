@@ -1,5 +1,5 @@
 # Dynamic Full Stack Developer Portfolio & GSAP Showcase
-
+  
 This repository contains:
 1. **The Exact Same Original Website** (`original.html`) — Pristine, fully self-contained recreation of the *GSAP x Webflow* interactive showcase by Off Brand.
 2. **The Converted Full Stack Developer Portfolio** (`index.html`) — The exact same website personalized for Subhan Kalgond, Full Stack Developer & Data Science Enthusiast.
@@ -8,7 +8,7 @@ This repository contains:
 
 ## 🚀 Quick Start / How to Run
 
-### Option 1: Start with npm (Recommended)
+### Option 1: Start with npm.  (Recommended)
 You can run the interactive development server with live reload directly:
 ```bash
 npm run dev
@@ -21,14 +21,14 @@ Then open:
 - **Resume**: `http://localhost:3000/resume.html`
 
 ### Option 2: Run a Python Server
-```bash
+```bash  
 python3 -m http.server 8000
 ```
 Then visit:
 - Portfolio: `http://localhost:8000/` or `http://localhost:8000/index.html`
 - Original Site: `http://localhost:8000/original.html`
 
-### Option 3: Open Directly in Browser
+### Option 3: Open  Directly in  Browser
 You can open either file directly in any modern browser:
 - **Portfolio Website**: Open `index.html`
 - **Original GSAP Showcase**: Open `original.html`
